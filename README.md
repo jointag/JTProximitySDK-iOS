@@ -1,26 +1,29 @@
 # JTProximitySDK Documentation
-Version 1.2.0
+Version 1.0alpha
 
-## SDK iOS
+## Installation
 
-Minimum deployment target: iOS 8.0
+### CocoaPods
 
-### Dependencies
-After importing the `JTProximitySDK` file into your project, from Xcode select your XCode project file and select your target. Then select **Build Phases** and in the section **Link Binary with Libraries** add the following frameworks and libraries:
+Add `pod JTProximitySDK` to your Podfile and run `pod install`. More on [CocoaPods here](https://cocoapods.org/).
 
-```
-Foundation.framework
-CFNetwork.framework
-CoreBluetooth.framework
-CoreLocation.framework
-MobileCoreServices.framework
-SystemConfiguration.framework
-libsqlite3.tbd
-JTProximitySDK.framework
-```
+### Manual
+
+Jointag Proximity SDK is distribute as a compiled **framework** and a **resource bundle**. To add it to your project, include the *JTProximitySDK.framework* and *JTProximitySDK.bundle* files to get started:
+
+1. Drag and drop JTProximitySDK.framework and JTProximitySDK.bundle files into your Xcode project (remember to check *"Copy items if needed"*). It will automatically show up in your project navigator and will be added to *"Linked Frameworks and Libraries"* and *"Copy Bundle Resources"* sections in project settings.
+
+2. Jointag Proximity SDK depends on the following Apple frameworks to work, so you should include them in your project too.
+    - Foundation.framework
+    - CFNetwork.framework
+    - CoreBluetooth.framework
+    - CoreLocation.framework
+    - MobileCoreServices.framework
+    - SystemConfiguration.framework
+    - libsqlite3.tbd
 
 ### Project settings
-You have to put in the Info.plist of your project the following settings:
+You have to put in the `Info.plist` of your project the following settings:
 
 #### Location usage description
 
@@ -31,16 +34,6 @@ You have to put in the Info.plist of your project the following settings:
 <string>Location usage description</string>
 <key>NSLocationWhenInUseUsageDescription</key>
 <string>Location usage description</string>
-```
-
-#### Transport security (**ONLY FOR ALPHA SDK VERSION**)
-
-```xml
-<key>NSAppTransportSecurity</key>
-<dict>
-  <key>NSAllowsArbitraryLoads</key>
-  <true/>
-</dict>
 ```
 
 ### Initialization
@@ -65,7 +58,19 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
+### Debug Mode
+
 During the development process it's possible to initialize the SDK in debug mode. This way all the data will be sent to a sandbox server, preventing to put test data in production databases.
+
+Before enabling the debug mode, you must add the the following setting to your application `Info.plist` file:
+
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+  <key>NSAllowsArbitraryLoads</key>
+  <true/>
+</dict>
+```
 
 To initialize the SDK in debug mode please use the following lines of code instead of the previous ones:
 
