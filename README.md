@@ -1,5 +1,4 @@
 # JTProximitySDK Documentation
-Version 1.0alpha
 
 ## Installation
 
