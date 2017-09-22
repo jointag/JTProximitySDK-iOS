@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name         = "JTProximitySDK"
-  s.version      = "1.2.0-stable"
+  s.version      = "1.2.0-stable-5"
   s.summary      = "iOS library for Jointag Proximity"
   s.homepage     = "https://www.jointag.com/"
   s.author             = "Jointag S.r.l."
   s.platform     = :ios
-  s.source       = { :git => "https://github.com/jointagdev/JTProximitySDK-iOS.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/jointag/JTProximitySDK-iOS.git", :tag => "#{s.version}" }
   s.source_files  = "Library/JTProximitySDK.framework/Headers/JTProximitySDK.*"
   s.vendored_frameworks = 'Library/JTProximitySDK.framework'
   s.ios.deployment_target = '8.0'
