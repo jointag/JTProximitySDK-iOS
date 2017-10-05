@@ -24,12 +24,20 @@ typedef NS_ENUM(NSInteger, JTPLogLevel) {
 extern NSString *const SDK_VERSION;
 extern NSInteger const SDK_BUILD;
 
+@protocol JTProximityCustomDelegate<NSObject>
+
+- (void)jtProximityDidReceiveCustomAction:(NSString *)customAction;
+
+@end
+
 NS_SWIFT_NAME(ProximitySDK)
 @interface JTProximitySDK : NSObject
 
 @property (strong, nonatomic) NSString *apiKey;
 @property (strong, nonatomic) NSString *apiSecret;
 @property (nonatomic, assign, readonly) BOOL debug;
+
+@property (weak, nonatomic) id<JTProximityCustomDelegate> customDelegate;
 
 + (instancetype)sharedInstance NS_SWIFT_NAME(instance());
 - (void)setLogLevel:(JTPLogLevel)logLevel;
