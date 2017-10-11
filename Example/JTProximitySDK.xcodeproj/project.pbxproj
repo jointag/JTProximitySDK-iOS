@@ -38,6 +38,7 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		797E9CDCA3D16084E6160507 /* JTProximitySDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = JTProximitySDK.podspec; path = ../JTProximitySDK.podspec; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A9D1CE391F8E729F00D2FE14 /* JTProximitySDK_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JTProximitySDK_Example.entitlements; sourceTree = "<group>"; };
 		A9DD79D61F790BC20082D642 /* JTProximitySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = JTProximitySDK.bundle; path = ../Library/JTProximitySDK.bundle; sourceTree = "<group>"; };
 		A9DD79DB1F790C9E0082D642 /* JTProximitySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JTProximitySDK.framework; path = ../Library/JTProximitySDK.framework; sourceTree = "<group>"; };
 		BA68D94D3ECDB61F9AF6FA64 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				A9D1CE391F8E729F00D2FE14 /* JTProximitySDK_Example.entitlements */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for JTProximitySDK */,
 				6003F58C195388D20070C39A /* Frameworks */,
@@ -158,6 +160,11 @@
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
 						DevelopmentTeam = 67BZD2K589;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
