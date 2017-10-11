@@ -177,3 +177,9 @@ The SDK associates each tracked event with the *IDFA*. If the *IDFA* is not avai
 ```swift
 ProximitySDK.instance().installationId()
 ```
+
+## Receive custom events
+
+You can receive custom advertising events (if configured in the backend) to integrate application-specific features by using the `customDelegate` property of `ProximitySDK` instance.
+
+When the application user interacts with a custom-action notification, the `jtProximityDidReceiveCustomAction:` method is invoked by passing a `customAction` NSString object.
