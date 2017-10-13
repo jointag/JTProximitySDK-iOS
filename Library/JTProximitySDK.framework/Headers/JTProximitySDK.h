@@ -37,6 +37,9 @@ NS_SWIFT_NAME(ProximitySDK)
 @property (strong, nonatomic) NSString *apiSecret;
 @property (nonatomic, assign, readonly) BOOL debug;
 
+@property (assign, nonatomic) BOOL promptForPushNotifications;
+@property (assign, nonatomic) BOOL promptForLocationAuthorization;
+
 @property (weak, nonatomic) id<JTProximityCustomDelegate> customDelegate;
 
 + (instancetype)sharedInstance NS_SWIFT_NAME(instance());
