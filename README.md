@@ -1,5 +1,20 @@
 # JTProximitySDK Documentation
 
+## Table of Contents
+
+1. [Installation](#user-content-installation)
+    1. [CocoaPods](#user-content-cocoapods)
+    2. [Manual](#user-content-manual)
+2. [Project settings](#user-content-project-settings)
+    1. [Location usage description](#user-content-location-usage-description)
+3. [Initialization](#user-content-initialization)
+    1. [Simple Initialization](#user-content-simple-initialization)
+    2. [Debug Mode](#user-content-debug-mode)
+    3. [Handling Notifications](#user-content-handling-notifications)
+    4. [Tracking users](#user-content-tracking-users)
+    5. [Disable automatic permission requests](#user-content-disable-automatic-permission-requests)
+4. [Receive custom events](#user-content-receive-custom-events)
+
 ## Installation
 
 ### CocoaPods
@@ -21,10 +36,10 @@ Jointag Proximity SDK is distribute as a compiled **framework** and a **resource
     - SystemConfiguration.framework
     - libsqlite3.tbd
 
-### Project settings
+## Project settings
 You have to put in the `Info.plist` of your project the following settings:
 
-#### Location usage description
+### Location usage description
 
 ```xml
 <key>NSLocationAlwaysUsageDescription</key>
@@ -35,9 +50,11 @@ You have to put in the `Info.plist` of your project the following settings:
 <string>Location usage description</string>
 ```
 
-### Initialization
+## Initialization
 
 Place the following code inside the `UIApplicationDelegate` of your application:
+
+### Simple Initialization
 
 ##### Objective-C
 
@@ -177,6 +194,15 @@ The SDK associates each tracked event with the *IDFA*. If the *IDFA* is not avai
 ```swift
 ProximitySDK.instance().installationId()
 ```
+
+### Disable automatic permission requests
+
+You can disable the SDK automatic location and notification permission requests during initialization by setting to NO the following properties on `JTProximitySDK.sharedInstance`:
+
+- `promptForPushNotifications` : set to `NO` to disable the automatic request for user notifications permission
+- `promptForLocationAuthorization` : set to `NO` to disable the automatic request for user location permission
+
+Note: the properties must be set before calling any `initWithLaunchOptions:apiKey:apiSecret:` method.
 
 ## Receive custom events
 
