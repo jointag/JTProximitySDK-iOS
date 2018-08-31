@@ -33,20 +33,35 @@ NS_SWIFT_NAME(ProximitySDK)
 @interface JTProximitySDK : NSObject
 
 @property (strong, nonatomic) NSString *apiKey;
+
 @property (strong, nonatomic) NSString *apiSecret;
+
 @property (assign, nonatomic, readonly) BOOL debug;
+
 @property (assign, nonatomic) BOOL promptForPushNotifications;
+
 @property (assign, nonatomic) BOOL promptForLocationAuthorization;
+
 @property (weak, nonatomic) id<JTProximityCustomDelegate> customDelegate;
+
 + (instancetype)sharedInstance NS_SWIFT_NAME(instance());
+
 - (void)setLogLevel:(JTPLogLevel)logLevel;
+
 - (void)initWithLaunchOptions:(NSDictionary *)launchOptions apiKey:(NSString *)apiKey apiSecret:(NSString *)apiSecret;
+
 - (void)initWithLaunchOptions:(NSDictionary *)launchOptions apiKey:(NSString *)apiKey apiSecret:(NSString *)apiSecret debug:(BOOL)debug;
+
 // Pre iOS 10
 - (BOOL)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification;
+
 // iOS 10 only
 - (BOOL)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification __IOS_AVAILABLE(10.0);
+
 - (BOOL)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response __IOS_AVAILABLE(10.0);
+
 - (NSString *)installationId;
+
+- (void)requestLocationAuthorization;
 
 @end
