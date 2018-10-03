@@ -32,11 +32,11 @@ extern NSInteger const SDK_BUILD;
 NS_SWIFT_NAME(ProximitySDK)
 @interface JTProximitySDK : NSObject
 
-@property (strong, nonatomic) NSString *apiKey;
+@property (readonly, nonatomic) NSString *apiKey;
 
-@property (strong, nonatomic) NSString *apiSecret;
+@property (readonly, nonatomic) NSString *apiSecret;
 
-@property (assign, nonatomic, readonly) BOOL debug;
+@property (readonly, nonatomic) BOOL debug;
 
 @property (assign, nonatomic) BOOL promptForPushNotifications;
 
@@ -60,7 +60,9 @@ NS_SWIFT_NAME(ProximitySDK)
 
 - (BOOL)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response __IOS_AVAILABLE(10.0);
 
-- (NSString *)installationId;
+- (nonnull NSString *)installationId;
+
+- (nullable NSString *)advertisingId;
 
 - (void)requestLocationAuthorization;
 
