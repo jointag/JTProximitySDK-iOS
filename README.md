@@ -9,10 +9,9 @@
     1. [Location usage description](#user-content-location-usage-description)
 3. [Initialization](#user-content-initialization)
     1. [Simple Initialization](#user-content-simple-initialization)
-    2. [Debug Mode](#user-content-debug-mode)
-    3. [Handling Notifications](#user-content-handling-notifications)
-    4. [Tracking users](#user-content-tracking-users)
-    5. [Disable automatic permission requests](#user-content-disable-automatic-permission-requests)
+    2. [Handling Notifications](#user-content-handling-notifications)
+    3. [Tracking users](#user-content-tracking-users)
+    4. [Disable automatic permission requests](#user-content-disable-automatic-permission-requests)
 4. [Receive custom events](#user-content-receive-custom-events)
 
 ## Installation
