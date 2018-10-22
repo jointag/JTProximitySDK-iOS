@@ -20,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[JTProximitySDK sharedInstance] setLogLevel:JTPLogLevelVerbose];
     [[JTProximitySDK sharedInstance] setCustomDelegate:self];
-    [[JTProximitySDK sharedInstance] initWithLaunchOptions:launchOptions apiKey:@"598322107a5b646fd1785fd9" apiSecret:@"qxUe5vECy5DPeXmeFhPHOerVYdVDg34/StHkV3IPNdA927v4" debug:YES];
+    [[JTProximitySDK sharedInstance] initWithLaunchOptions:launchOptions apiKey:@"598322107a5b646fd1785fd9" apiSecret:@"qxUe5vECy5DPeXmeFhPHOerVYdVDg34/StHkV3IPNdA927v4"];
     if (@available(iOS 10.0, *)) {
         [UNUserNotificationCenter currentNotificationCenter].delegate = self;
     }

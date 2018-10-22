@@ -74,41 +74,6 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-### Debug Mode
-
-During the development process it's possible to initialize the SDK in debug mode. This way all the data will be sent to a sandbox server, preventing to put test data in production databases.
-
-Before enabling the debug mode, you must add the the following setting to your application `Info.plist` file:
-
-```xml
-<key>NSAppTransportSecurity</key>
-<dict>
-  <key>NSAllowsArbitraryLoads</key>
-  <true/>
-</dict>
-```
-
-To initialize the SDK in debug mode please use the following lines of code instead of the previous ones:
-
-##### Objective-C
-
-```objc
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[JTProximitySDK sharedInstance] initWithLaunchOptions:launchOptions apiKey:@"YOUR_API_KEY" apiSecret:@"YOUR_API_SECRET" debug:YES];
-    // Other application logics
-}
-```
-
-##### Swift
-
-```swift
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    ProximitySDK.instance().initWithLaunchOptions(launchOptions, apiKey: "YOUR_API_KEY", apiSecret: "YOUR_API_SECRET", debug: true)
-    // Other application logics
-    return true
-}
-```
-
 ### Handling Notifications
 
 To enable the SDK to correctly send and manager advertising notifications, you must implement the following method in your `UIApplicationDelegate`:
