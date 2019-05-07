@@ -20,21 +20,21 @@ typedef NS_ENUM(NSInteger, JTPLogLevel) {
     JTPLogLevelWarn,
     JTPLogLevelError
 };
-extern NSString *const SDK_VERSION;
+extern NSString * _Nonnull const SDK_VERSION;
 extern NSInteger const SDK_BUILD;
 
 @protocol JTProximityCustomDelegate<NSObject>
 
-- (void)jtProximityDidReceiveCustomAction:(NSString *)customAction;
+- (void)jtProximityDidReceiveCustomAction:(nullable NSString *)customAction;
 
 @end
 
 NS_SWIFT_NAME(ProximitySDK)
 @interface JTProximitySDK : NSObject
 
-@property (readonly, nonatomic) NSString *apiKey;
+@property (readonly, nonatomic, nullable) NSString *apiKey;
 
-@property (readonly, nonatomic) NSString *apiSecret;
+@property (readonly, nonatomic, nullable) NSString *apiSecret;
 
 @property (readonly, nonatomic) BOOL debug;
 
@@ -42,23 +42,23 @@ NS_SWIFT_NAME(ProximitySDK)
 
 @property (assign, nonatomic) BOOL promptForLocationAuthorization;
 
-@property (weak, nonatomic) id<JTProximityCustomDelegate> customDelegate;
+@property (weak, nonatomic, nullable) id<JTProximityCustomDelegate> customDelegate;
 
-+ (instancetype)sharedInstance NS_SWIFT_NAME(instance());
++ (nonnull instancetype)sharedInstance NS_SWIFT_NAME(instance());
 
 - (void)setLogLevel:(JTPLogLevel)logLevel;
 
-- (void)initWithLaunchOptions:(NSDictionary *)launchOptions apiKey:(NSString *)apiKey apiSecret:(NSString *)apiSecret;
+- (void)initWithLaunchOptions:(nullable NSDictionary *)launchOptions apiKey:(nonnull NSString *)apiKey apiSecret:(nonnull NSString *)apiSecret;
 
-- (void)initWithLaunchOptions:(NSDictionary *)launchOptions apiKey:(NSString *)apiKey apiSecret:(NSString *)apiSecret debug:(BOOL)debug;
+- (void)initWithLaunchOptions:(nullable NSDictionary *)launchOptions apiKey:(nonnull NSString *)apiKey apiSecret:(nonnull NSString *)apiSecret debug:(BOOL)debug;
 
 // Pre iOS 10
-- (BOOL)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification;
+- (BOOL)application:(nonnull UIApplication *)application didReceiveLocalNotification:(nonnull UILocalNotification *)notification;
 
 // iOS 10 only
-- (BOOL)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification __IOS_AVAILABLE(10.0);
+- (BOOL)userNotificationCenter:(nonnull UNUserNotificationCenter *)center willPresentNotification:(nonnull UNNotification *)notification __IOS_AVAILABLE(10.0);
 
-- (BOOL)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response __IOS_AVAILABLE(10.0);
+- (BOOL)userNotificationCenter:(nonnull UNUserNotificationCenter *)center didReceiveNotificationResponse:(nonnull UNNotificationResponse *)response __IOS_AVAILABLE(10.0);
 
 - (nonnull NSString *)installationId;
 
