@@ -42,6 +42,8 @@ NS_SWIFT_NAME(ProximitySDK)
 
 @property (assign, nonatomic) BOOL promptForLocationAuthorization;
 
+@property (assign, nonatomic) BOOL cmpEnabled;
+
 @property (weak, nonatomic, nullable) id<JTProximityCustomDelegate> customDelegate;
 
 + (nonnull instancetype)sharedInstance NS_SWIFT_NAME(instance());
@@ -49,8 +51,6 @@ NS_SWIFT_NAME(ProximitySDK)
 - (void)setLogLevel:(JTPLogLevel)logLevel;
 
 - (void)initWithLaunchOptions:(nullable NSDictionary *)launchOptions apiKey:(nonnull NSString *)apiKey apiSecret:(nonnull NSString *)apiSecret;
-
-- (void)initWithLaunchOptions:(nullable NSDictionary *)launchOptions apiKey:(nonnull NSString *)apiKey apiSecret:(nonnull NSString *)apiSecret debug:(BOOL)debug;
 
 // Pre iOS 10
 - (BOOL)application:(nonnull UIApplication *)application didReceiveLocalNotification:(nonnull UILocalNotification *)notification;
@@ -66,4 +66,9 @@ NS_SWIFT_NAME(ProximitySDK)
 
 - (void)requestLocationAuthorization;
 
+- (void)setGDPRConsent:(BOOL)consent forVendor:(int)vendorId;
+- (BOOL)getGDPRConsentForVendor:(int) vendorId;
+
 @end
+
+
