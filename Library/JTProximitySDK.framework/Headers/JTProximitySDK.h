@@ -36,21 +36,55 @@ NS_SWIFT_NAME(ProximitySDK)
 
 @property (readonly, nonatomic, nullable) NSString *apiSecret;
 
-@property (readonly, nonatomic) BOOL debug;
+/**
+Automatically request Notifications Authorization on start
 
+Default to YES
+*/
 @property (assign, nonatomic) BOOL promptForPushNotifications;
 
+/**
+ Automatically request Location Authorization on start
+
+ Default to YES
+ */
 @property (assign, nonatomic) BOOL promptForLocationAuthorization;
 
+/**
+ Enable CMP support for GDPR compliance.
+
+ @note MUST be set before calling initWithLaunchOptions:apiKey:apiSecret:
+ */
+@property (assign, nonatomic) BOOL cmpEnabled;
+
+/**
+ Delegate for custom advertising actions
+
+ @see JTProximityCustomDelegate
+ */
 @property (weak, nonatomic, nullable) id<JTProximityCustomDelegate> customDelegate;
 
+
+/**
+ UISceneDelegate for iOS 13
+ */
+
+@property (weak, nonatomic, nullable) id<UIWindowSceneDelegate> windowSceneDelegate API_AVAILABLE(ios(13.0));
+
+
+/**
+ Singleton instance for JTProximitySDK
+ */
 + (nonnull instancetype)sharedInstance NS_SWIFT_NAME(instance());
 
 - (void)setLogLevel:(JTPLogLevel)logLevel;
 
-- (void)initWithLaunchOptions:(nullable NSDictionary *)launchOptions apiKey:(nonnull NSString *)apiKey apiSecret:(nonnull NSString *)apiSecret;
+/**
+ Initialization method
 
-- (void)initWithLaunchOptions:(nullable NSDictionary *)launchOptions apiKey:(nonnull NSString *)apiKey apiSecret:(nonnull NSString *)apiSecret debug:(BOOL)debug;
+ Must be called from UIApplicationDelegate's application:didFinishLaunchingWithOptions: method
+ */
+- (void)initWithLaunchOptions:(nullable NSDictionary *)launchOptions apiKey:(nonnull NSString *)apiKey apiSecret:(nonnull NSString *)apiSecret;
 
 // Pre iOS 10
 - (BOOL)application:(nonnull UIApplication *)application didReceiveLocalNotification:(nonnull UILocalNotification *)notification;
@@ -60,10 +94,44 @@ NS_SWIFT_NAME(ProximitySDK)
 
 - (BOOL)userNotificationCenter:(nonnull UNUserNotificationCenter *)center didReceiveNotificationResponse:(nonnull UNNotificationResponse *)response __IOS_AVAILABLE(10.0);
 
+/**
+ Unique installation identifier
+ */
 - (nonnull NSString *)installationId;
 
+/**
+ Platform-specific advertising identifier
+ */
 - (nullable NSString *)advertisingId;
 
+/**
+ Manually request for Location Authorization.
+
+ @note This method can be used to manually request Location Authorization if the
+ automatic request has been disabled.
+
+ @see promptForLocationAuthorization
+ */
 - (void)requestLocationAuthorization;
 
+/**
+ Set the GDPR consent manually for the current installation.
+ This method is intended as a replacement for the implementation of a IAB-compatible CMP platform
+
+ @note cmpEnabled must be set to YES before using this method
+ @see cmpEnabled
+ */
+- (void)setGDPRConsent:(BOOL)consent forVendor:(int)vendorId;
+
+/**
+ Get current installation GDPR consent status.
+
+ @return true if the user consent has been given manually, or through a
+ IAB-compatible CMP platform if present and the user is subjected to GDPR
+ regulation.
+ */
+- (BOOL)getGDPRConsentForVendor:(int) vendorId;
+
 @end
+
+
