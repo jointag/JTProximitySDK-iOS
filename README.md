@@ -9,11 +9,12 @@
     1. [Location usage description](#user-content-location-usage-description)
 3. [Initialization](#user-content-initialization)
     1. [Simple Initialization](#user-content-simple-initialization)
-    2. [Handling Notifications](#user-content-handling-notifications)
-    3. [Tracking users](#user-content-tracking-users)
-    4. [Disable automatic permission requests](#user-content-disable-automatic-permission-requests)
-    5. [GDPR](#user-content-gdpr)
-    6. [Receive custom events](#user-content-receive-custom-events)
+    2. [iOS 13 Scenes](#ios-13-scenes)
+    3. [Handling Notifications](#user-content-handling-notifications)
+    4. [Tracking users](#user-content-tracking-users)
+    5. [Disable automatic permission requests](#user-content-disable-automatic-permission-requests)
+    6. [GDPR](#user-content-gdpr)
+    7. [Receive custom events](#user-content-receive-custom-events)
 
 ## Installation
 
@@ -82,6 +83,30 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     ProximitySDK.instance().initWithLaunchOptions(launchOptions, apiKey: "YOUR_API_KEY", apiSecret: "YOUR_API_SECRET")
     // Other application logics
     return true
+}
+```
+
+### iOS 13 Scenes
+
+If your application make use of iOS 13 scenes, an additional requirement is to
+update the SDK windowSceneDelegate reference with the current active
+UIWindowSceneDelegate.
+
+To do this you must add the following code to your current UIWindowSceneDelegate
+`scene:willConnectToSession:options:` :
+
+```swift
+import UIKit
+import JTProximitySDK
+
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+
+    var window: UIWindow?
+
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        ProximitySDK.instance().windowSceneDelegate = self
+        guard let _ = (scene as? UIWindowScene) else { return }
+    }
 }
 ```
 
