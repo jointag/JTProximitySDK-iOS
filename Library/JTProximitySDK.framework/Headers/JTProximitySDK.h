@@ -7,19 +7,14 @@
 //
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "JTPLogger.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
 
 #import <UserNotifications/UserNotifications.h>
 
 #endif
-typedef NS_ENUM(NSInteger, JTPLogLevel) {
-    JTPLogLevelVerbose,
-    JTPLogLevelDebug,
-    JTPLogLevelInfo,
-    JTPLogLevelWarn,
-    JTPLogLevelError
-};
+
 extern NSString * _Nonnull const SDK_VERSION;
 extern NSInteger const SDK_BUILD;
 
@@ -64,13 +59,11 @@ Default to YES
  */
 @property (weak, nonatomic, nullable) id<JTProximityCustomDelegate> customDelegate;
 
-
 /**
  UISceneDelegate for iOS 13
  */
 
 @property (weak, nonatomic, nullable) id<UIWindowSceneDelegate> windowSceneDelegate API_AVAILABLE(ios(13.0));
-
 
 /**
  Singleton instance for JTProximitySDK
@@ -133,5 +126,3 @@ Default to YES
 - (BOOL)getGDPRConsentForVendor:(int) vendorId;
 
 @end
-
-
