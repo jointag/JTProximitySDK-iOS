@@ -13,8 +13,9 @@
     3. [Handling Notifications](#user-content-handling-notifications)
     4. [Tracking users](#user-content-tracking-users)
     5. [Disable automatic permission requests](#user-content-disable-automatic-permission-requests)
-    6. [GDPR](#user-content-gdpr)
-    7. [Receive custom events](#user-content-receive-custom-events)
+    6. [Programmatically Disable Advertising](#programmatically-disable-advertising)
+    7. [GDPR](#user-content-gdpr)
+    8. [Receive custom events](#user-content-receive-custom-events)
 
 ## Installation
 
@@ -39,7 +40,6 @@ settings.
 you should include them in your project too.
     - Foundation.framework
     - CFNetwork.framework
-    - CoreBluetooth.framework
     - CoreLocation.framework
     - MobileCoreServices.framework
     - SystemConfiguration.framework
@@ -80,7 +80,7 @@ Place the following code inside the `UIApplicationDelegate` of your application:
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    ProximitySDK.instance().initWithLaunchOptions(launchOptions, apiKey: "YOUR_API_KEY", apiSecret: "YOUR_API_SECRET")
+    ProximitySDK.shared.initWithLaunchOptions(launchOptions, apiKey: "YOUR_API_KEY", apiSecret: "YOUR_API_SECRET")
     // Other application logics
     return true
 }
@@ -104,7 +104,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        ProximitySDK.instance().windowSceneDelegate = self
+        ProximitySDK.shared.windowSceneDelegate = self
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 }
@@ -130,7 +130,7 @@ must implement the following method in your `UIApplicationDelegate`:
 
 ```swift
 func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-    if (ProximitySDK.instance().application(application, didReceive: notification)) {
+    if (ProximitySDK.shared.application(application, didReceive: notification)) {
         return
     }
     // Other application logics
@@ -165,7 +165,7 @@ your `UNUserNotificationCenterDelegate` methods:
 ```swift
 @available(iOS 10.0, *)
 func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    if ProximitySDK.instance().userNotificationCenter(center, willPresent: notification) {
+    if ProximitySDK.shared.userNotificationCenter(center, willPresent: notification) {
         completionHandler([.alert, .badge, .sound])
         return
     }
@@ -174,7 +174,7 @@ func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent noti
 
 @available(iOS 10.0, *)
 func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-    if ProximitySDK.instance().userNotificationCenter(center, didReceive: response) {
+    if ProximitySDK.shared.userNotificationCenter(center, didReceive: response) {
         completionHandler()
         return
     }
@@ -201,7 +201,7 @@ initialization of the SDK anywhere in your code with the following line:
 ##### Swift
 
 ```swift
-ProximitySDK.instance().installationId()
+ProximitySDK.shared.installationId()
 ```
 
 ### Disable automatic permission requests
@@ -217,6 +217,33 @@ during initialization by setting to NO the following properties on
 
 Note: the properties must be set before calling any
 `initWithLaunchOptions:apiKey:apiSecret:` method.
+
+### Programmatically Disable Advertising
+
+It is possible to programmatically disable/enable the advertising delivery by
+setting the SDK's `advertisingEnabled` property to `false`. It is useful for
+example to disable the delivery of advertising for specific users of the
+application. In that case, simply change the property as soon as the user sign
+in or out of the application.
+The default value for the property is `true`.
+
+##### Objective-C
+
+```objc
+// disable advertising delivery
+[[JTProximitySDK sharedInstance] setAdvertisingEnabled:NO];
+// enable advertising delivery
+[[JTProximitySDK sharedInstance] setAdvertisingEnabled:YES];
+```
+
+##### Swift
+
+```swift
+// disable advertising delivery
+ProximitySDK.shared.advertisingEnabled = false
+// enable advertising delivery
+ProximitySDK.shared.advertisingEnabled = true
+```
 
 ### GDPR
 

@@ -3,12 +3,12 @@
 //  JTProximitySDK
 //
 //  Created by Marco Fraccaroli on 09/25/2017.
-//  Copyright (c) 2017 Marco Fraccaroli. All rights reserved.
+//  Copyright (c) 2020 Jointag S.r.l. All rights reserved.
 //
 
 #import "JTAppDelegate.h"
+#import <JTProximitySDK/JTProximitySDK.h>
 
-@import JTProximitySDK;
 @import UserNotifications;
 
 @interface JTAppDelegate()<UNUserNotificationCenterDelegate,JTProximityCustomDelegate>

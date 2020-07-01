@@ -32,6 +32,15 @@ NS_SWIFT_NAME(ProximitySDK)
 @property (readonly, nonatomic, nullable) NSString *apiSecret;
 
 /**
+ Enable/Disable delivering of advertising. Setting this property to "NO"
+ takes precedence over any other delivery-related settings (ie GDPR consent or
+ server-side setting).
+
+ Default to YES
+ */
+@property (assign, nonatomic) BOOL advertisingEnabled;
+
+/**
 Automatically request Notifications Authorization on start
 
 Default to YES
@@ -68,7 +77,9 @@ Default to YES
 /**
  Singleton instance for JTProximitySDK
  */
-+ (nonnull instancetype)sharedInstance NS_SWIFT_NAME(instance());
+@property (class, readonly, strong) JTProximitySDK * _Nonnull sharedInstance NS_SWIFT_NAME(shared);
+
++ (nonnull instancetype)_sharedInstance NS_SWIFT_NAME(instance()) __deprecated_msg("Use ProximitySDK.shared instead");
 
 - (void)setLogLevel:(JTPLogLevel)logLevel;
 

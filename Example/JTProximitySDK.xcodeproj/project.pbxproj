@@ -17,8 +17,8 @@
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		A9DD79D81F790BC30082D642 /* JTProximitySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9DD79D61F790BC20082D642 /* JTProximitySDK.bundle */; };
-		A9DD79DD1F790D250082D642 /* JTProximitySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DD79DB1F790C9E0082D642 /* JTProximitySDK.framework */; };
+		A990284B24AC7F1100453BD3 /* JTProximitySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DD79DB1F790C9E0082D642 /* JTProximitySDK.framework */; };
+		A990284C24AC7F1400453BD3 /* JTProximitySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9DD79D61F790BC20082D642 /* JTProximitySDK.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +51,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
-				A9DD79DD1F790D250082D642 /* JTProximitySDK.framework in Frameworks */,
+				A990284B24AC7F1100453BD3 /* JTProximitySDK.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
 			);
@@ -194,7 +194,7 @@
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				A9DD79D81F790BC30082D642 /* JTProximitySDK.bundle in Resources */,
+				A990284C24AC7F1400453BD3 /* JTProximitySDK.bundle in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

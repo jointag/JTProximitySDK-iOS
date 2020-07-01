@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.license      = {
     :type => "Copyright",
     :text => <<-LICENSE
-      Copyright 2017 Estimote, Inc. All rights reserved.
+      Copyright 2020 Jointag S.r.l. All rights reserved.
       LICENSE
   }
 
