@@ -249,33 +249,15 @@ ProximitySDK.shared.advertisingEnabled = true
 
 As a publisher, you should integrate a Consent Management Platform (CMP) and
 request for vendor and purpose consents as outlined in IAB Europe’s Mobile
-In-App CMP API v1.0: Transparency & Consent Framework.
+In-App CMP API v2.0: Transparency & Consent Framework.
 
 To ensure that the SDK support the handling of user-consent preferences when a
 IAB-compatible CMP library is present, you must enable the feature through the
 `ProximitySDK.setCmpEnabled:` method, which is `false` by default.
 
-This method must be called before the library
+**This method must be called before the library
 `initWithLaunchOptions:apiKey:apiSecret:` method to guarantee an error-free
-process.
-
-You can find a reference implementation of a web-based CMP and the corresponding
-native wrappers here:
-https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework.
-
-If you are embedding your own custom CMP, the collected end user consent
-information needs to be stored in `UserDefaults.standard` using the following
-keys:
-
-Key	Value
-
-| Key                              | Type    | Description                     |
-| -------------------------------- | ------- | ------------------------------- |
-| IABConsent_CMPPresent            | Boolean | (Set to `true` if a CMP that follows the iAB specification is present in the application) |
-| IABConsent_SubjectToGDPR         | String  | `1` - (subject to GDPR), `0` - (not subject to GDPR), `-1` - Unknown (default before initialization) |
-| IABConsent_ConsentString         | String  | (Base64-encoded consent string as defined in Consent string and vendor list format v1.1) |
-| IABConsent_ParsedPurposeConsents | String  | (String of `0`s and `1`s, where the character at position N indicates the consent status to purposeID N as defined in the Global Vendor List) |
-| IABConsent_ParsedVendorConsents  | String  | (String of `0`s and `1`s, where the character at position N indicates the consent status to vendorID N as defined in the Global Vendor List) |
+process**.
 
 ### Receive custom events
 
