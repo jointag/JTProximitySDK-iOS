@@ -21,14 +21,20 @@
 
 ### Installation using CocoaPods
 
-1. Install or update `CocoaPods` to version **1.9.0 or later**, which is essential for proper support of the new *xcframework* format.
-2. In your terminal execute `pod init` from your project directory, if the project is not already pod-enabled
-3. Edit your project Podfile and add `pod 'JTProximitySDK'` to your main application target
+1. Install or update `CocoaPods` to version **1.9.0 or later**, which is
+   essential for proper support of the new *xcframework* format.
+
+2. In your terminal execute `pod init` from your project directory, if the
+   project is not already pod-enabled
+
+3. Edit your project Podfile and add `pod 'JTProximitySDK'` to your main
+   application target
+
 4. In your terminal execute `pod install` from your project directory.
 
 eg:
 
-```
+```ruby
 target 'MyApp' do
   use_frameworks!
   pod 'JTProximitySDK'
@@ -39,11 +45,16 @@ More on [CocoaPods here](https://cocoapods.org/).
 
 ### Manual Installation
 
-Jointag Proximity SDK is distribute as a compiled **xcframework** with binaries for both device and simulator. To add it to your project, include the *JTProximitySDK.xcframework* as follow:
+Jointag Proximity SDK is distribute as a compiled **xcframework** with binaries
+for both device and simulator. To add it to your project, include the
+*JTProximitySDK.xcframework* as follow:
 
-1. Drag and drop the JTProximitySDK.xcframework framework folder into your Xcode project (remember to check *"Copy items if needed"*).
+1. Drag and drop the JTProximitySDK.xcframework framework folder into your Xcode
+project (remember to check *"Copy items if needed"*).
 
-2. Make sure the JTProximitySDK.xcframework appears in the **Frameworks, Libraries, and Embedded Content** section of the **General** tab of your project and that the *embed* mode is **Embed & Sign**
+2. Make sure the JTProximitySDK.xcframework appears in the **Frameworks,
+Libraries, and Embedded Content** section of the **General** tab of your project
+and that the *embed* mode is **Embed & Sign**
 
 ## Project settings
 You have to put in the `Info.plist` of your project the following settings:
