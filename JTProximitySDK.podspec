@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   }
   s.ios.deployment_target = '8.0'
   s.vendored_frameworks = 'Library/JTProximitySDK.xcframework'
-  s.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'CoreLocation', 'CoreTelephony', 'AdSupport', 'CommonCrypto', 'WebKit'
+  s.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'CoreLocation', 'CoreTelephony', 'AdSupport', 'WebKit'
   s.license    = {
     :type => "Copyright",
     :text => <<-LICENSE
