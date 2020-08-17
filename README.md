@@ -3,8 +3,8 @@
 ## Table of Contents
 
 1. [Installation](#user-content-installation)
-    1. [CocoaPods](#user-content-cocoapods)
-    2. [Manual](#user-content-manual)
+    1. [Installation using CocoaPods](#installation-using-cocoapods)
+    2. [Manual Installation](#manual-installation)
 2. [Project settings](#user-content-project-settings)
     1. [Location usage description](#user-content-location-usage-description)
 3. [Initialization](#user-content-initialization)
@@ -19,33 +19,31 @@
 
 ## Installation
 
-### CocoaPods
+### Installation using CocoaPods
 
-Add `pod JTProximitySDK` to your Podfile and run `pod install`. More on
-[CocoaPods here](https://cocoapods.org/).
+1. Install or update `CocoaPods` to version **1.9.0 or later**, which is essential for proper support of the new *xcframework* format.
+2. In your terminal execute `pod init` from your project directory, if the project is not already pod-enabled
+3. Edit your project Podfile and add `pod 'JTProximitySDK'` to your main application target
+4. In your terminal execute `pod install` from your project directory.
 
-### Manual
+eg:
 
-Jointag Proximity SDK is distribute as a compiled **framework** and a **resource
-bundle**. To add it to your project, include the *JTProximitySDK.framework* and
-*JTProximitySDK.bundle* files to get started:
+```
+target 'MyApp' do
+  use_frameworks!
+  pod 'JTProximitySDK'
+end
+```
 
-1. Drag and drop JTProximitySDK.framework and JTProximitySDK.bundle files into
-your Xcode project (remember to check *"Copy items if needed"*). It will
-automatically show up in your project navigator and will be added to *"Linked
-Frameworks and Libraries"* and *"Copy Bundle Resources"* sections in project
-settings.
+More on [CocoaPods here](https://cocoapods.org/).
 
-2. Jointag Proximity SDK depends on the following Apple frameworks to work, so
-you should include them in your project too.
-    - Foundation.framework
-    - CFNetwork.framework
-    - CoreLocation.framework
-    - MobileCoreServices.framework
-    - SystemConfiguration.framework
-    - libsqlite3.tbd
+### Manual Installation
 
-3. Add the "-all_load" linker flag to your project's target "Build Settings"
+Jointag Proximity SDK is distribute as a compiled **xcframework** with binaries for both device and simulator. To add it to your project, include the *JTProximitySDK.xcframework* as follow:
+
+1. Drag and drop the JTProximitySDK.xcframework framework folder into your Xcode project (remember to check *"Copy items if needed"*).
+
+2. Make sure the JTProximitySDK.xcframework appears in the **Frameworks, Libraries, and Embedded Content** section of the **General** tab of your project and that the *embed* mode is **Embed & Sign**
 
 ## Project settings
 You have to put in the `Info.plist` of your project the following settings:
@@ -71,7 +69,7 @@ Place the following code inside the `UIApplicationDelegate` of your application:
 
 ```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[JTProximitySDK sharedInstance] initWithLaunchOptions:launchOptions apiKey:@"YOUR_API_KEY" apiSecret:@"YOUR_API_SECRET"];
+    [JTProximitySDK.sharedInstance initWithLaunchOptions:launchOptions apiKey:@"YOUR_API_KEY" apiSecret:@"YOUR_API_SECRET"];
     // Other application logics
 }
 ```
