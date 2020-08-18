@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,9 +17,23 @@
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		A990284B24AC7F1100453BD3 /* JTProximitySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DD79DB1F790C9E0082D642 /* JTProximitySDK.framework */; };
-		A990284C24AC7F1400453BD3 /* JTProximitySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9DD79D61F790BC20082D642 /* JTProximitySDK.bundle */; };
+		A91ACF2324EA7EA7004A606A /* JTProximitySDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D19E8024EA7D290054B25E /* JTProximitySDK.xcframework */; };
+		A91ACF2424EA7EA7004A606A /* JTProximitySDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A9D19E8024EA7D290054B25E /* JTProximitySDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A91ACF2524EA7EA7004A606A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A91ACF2424EA7EA7004A606A /* JTProximitySDK.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6003F58A195388D20070C39A /* JTProximitySDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JTProximitySDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,9 +52,8 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		797E9CDCA3D16084E6160507 /* JTProximitySDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = JTProximitySDK.podspec; path = ../JTProximitySDK.podspec; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A9D19E8024EA7D290054B25E /* JTProximitySDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = JTProximitySDK.xcframework; path = ../Library/JTProximitySDK.xcframework; sourceTree = "<group>"; };
 		A9D1CE391F8E729F00D2FE14 /* JTProximitySDK_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JTProximitySDK_Example.entitlements; sourceTree = "<group>"; };
-		A9DD79D61F790BC20082D642 /* JTProximitySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = JTProximitySDK.bundle; path = ../Library/JTProximitySDK.bundle; sourceTree = "<group>"; };
-		A9DD79DB1F790C9E0082D642 /* JTProximitySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JTProximitySDK.framework; path = ../Library/JTProximitySDK.framework; sourceTree = "<group>"; };
 		BA68D94D3ECDB61F9AF6FA64 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D928605FFA49F51500A0A14D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,8 +64,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
-				A990284B24AC7F1100453BD3 /* JTProximitySDK.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
+				A91ACF2324EA7EA7004A606A /* JTProximitySDK.xcframework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,8 +95,7 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A9DD79DB1F790C9E0082D642 /* JTProximitySDK.framework */,
-				A9DD79D61F790BC20082D642 /* JTProximitySDK.bundle */,
+				A9D19E8024EA7D290054B25E /* JTProximitySDK.xcframework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
@@ -138,6 +150,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
+				A91ACF2524EA7EA7004A606A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -194,7 +207,6 @@
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				A990284C24AC7F1400453BD3 /* JTProximitySDK.bundle in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,8 +353,12 @@
 				FRAMEWORK_SEARCH_PATHS = ../Library;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "JTProximitySDK/JTProximitySDK-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jointag.proximity.sample.GithubSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -356,8 +372,12 @@
 				FRAMEWORK_SEARCH_PATHS = ../Library;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "JTProximitySDK/JTProximitySDK-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jointag.proximity.sample.GithubSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
