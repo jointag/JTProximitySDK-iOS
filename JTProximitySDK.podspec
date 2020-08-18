@@ -1,22 +1,18 @@
 Pod::Spec.new do |s|
   s.name         = "JTProximitySDK"
-  s.version      = "1.10.0"
+  s.version      = "1.11.0"
   s.summary      = "iOS library for Jointag Proximity"
   s.homepage     = "https://www.jointag.com/"
   s.author       = "Jointag S.r.l."
   s.platform     = :ios
-  s.source       = { :git => "https://github.com/jointag/JTProximitySDK-iOS.git", :tag => "#{s.version}" }
-  s.source_files  = "Library/JTProximitySDK.framework/Headers/JTProximitySDK.*"
-  s.vendored_frameworks = 'Library/JTProximitySDK.framework'
-  s.ios.deployment_target = '8.0'
-  s.resources = ["Library/JTProximitySDK.bundle"]
-  s.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'CoreLocation', 'CoreBluetooth'
-  s.requires_arc = true
-  s.xcconfig  =  {
-    'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/JTProximitySDK"',
-    'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/Headers/JTProximitySDK"'
+  s.source       = {
+    :git => "https://github.com/jointag/JTProximitySDK-iOS.git",
+    :tag => "#{s.version}"
   }
-  s.license      = {
+  s.ios.deployment_target = '8.0'
+  s.vendored_frameworks = 'Library/JTProximitySDK.xcframework'
+  s.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'CoreLocation', 'CoreTelephony', 'AdSupport', 'WebKit'
+  s.license    = {
     :type => "Copyright",
     :text => <<-LICENSE
       Copyright 2020 Jointag S.r.l. All rights reserved.
