@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17124"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,12 +18,104 @@
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ICq-2S-SjJ">
+                                <rect key="frame" x="24" y="329" width="327" height="154"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X24-Gk-35j">
+                                        <rect key="frame" x="0.0" y="0.0" width="327" height="46"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aac-Vv-7XL">
+                                                <rect key="frame" x="0.0" y="0.0" width="295" height="46"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="14" maxX="16" maxY="14"/>
+                                                <state key="normal" title="Request Tracking Permissions"/>
+                                                <connections>
+                                                    <action selector="requestTrackingPermissions:" destination="whP-gf-Uak" eventType="touchUpInside" id="egQ-Q3-i6K"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_box_outline_blank" translatesAutoresizingMaskIntoConstraints="NO" id="Mvt-4G-Ndp">
+                                                <rect key="frame" x="295" y="0.0" width="32" height="46"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DwL-qU-h3D">
+                                        <rect key="frame" x="0.0" y="54" width="327" height="46"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vx8-1Y-Oft">
+                                                <rect key="frame" x="0.0" y="0.0" width="295" height="46"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="14" maxX="16" maxY="14"/>
+                                                <state key="normal" title="Request Notification Permissions"/>
+                                                <connections>
+                                                    <action selector="requestNotificationPermissions:" destination="whP-gf-Uak" eventType="touchUpInside" id="r9d-mn-VbF"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_box_outline_blank" translatesAutoresizingMaskIntoConstraints="NO" id="9WI-dg-RWG">
+                                                <rect key="frame" x="295" y="0.0" width="32" height="46"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gww-0s-rGG">
+                                        <rect key="frame" x="0.0" y="108" width="327" height="46"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFX-XM-hJU">
+                                                <rect key="frame" x="0.0" y="0.0" width="295" height="46"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="14" maxX="16" maxY="14"/>
+                                                <state key="normal" title="Request Location Permissions"/>
+                                                <connections>
+                                                    <action selector="requestLocationPermissions:" destination="whP-gf-Uak" eventType="touchUpInside" id="pYh-Dn-gqg"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_box_outline_blank" translatesAutoresizingMaskIntoConstraints="NO" id="TsM-91-ix7">
+                                                <rect key="frame" x="295" y="0.0" width="32" height="46"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ICq-2S-SjJ" firstAttribute="centerY" secondItem="TpU-gO-2f1" secondAttribute="centerY" id="6ee-8P-oU0"/>
+                            <constraint firstAttribute="trailing" secondItem="ICq-2S-SjJ" secondAttribute="trailing" constant="24" id="UD5-LT-Lkl"/>
+                            <constraint firstItem="ICq-2S-SjJ" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="24" id="bRA-FI-FNE"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="locationPermissionButton" destination="FFX-XM-hJU" id="1wU-ee-TK9"/>
+                        <outlet property="locationPermissionView" destination="TsM-91-ix7" id="bkm-lg-S7J"/>
+                        <outlet property="notificationPermissionButton" destination="Vx8-1Y-Oft" id="tYD-T6-8vB"/>
+                        <outlet property="notificationPermissionView" destination="9WI-dg-RWG" id="EM5-Yy-7KJ"/>
+                        <outlet property="trackingPermissionButton" destination="aac-Vv-7XL" id="PBp-yb-g0e"/>
+                        <outlet property="trackingPermissionView" destination="Mvt-4G-Ndp" id="hAM-u4-ffE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="305" y="433"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_check_box_outline_blank" width="32" height="32"/>
+    </resources>
 </document>

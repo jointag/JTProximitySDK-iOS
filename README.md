@@ -5,32 +5,35 @@
 1. [Installation](#user-content-installation)
     1. [Installation using CocoaPods](#installation-using-cocoapods)
     2. [Manual Installation](#manual-installation)
-2. [Project settings](#user-content-project-settings)
-    1. [Location usage description](#user-content-location-usage-description)
+2. [Permissions and Settings](#permissions-and-settings)
+    1. [Important Notice](#important-notice)
+    2. [User Tracking Permission](#user-tracking-permission)
+    3. [Notifications Permission](#notifications-permission)
+    4. [Location Permission](#location-permission)
 3. [Initialization](#user-content-initialization)
     1. [Simple Initialization](#user-content-simple-initialization)
     2. [iOS 13 Scenes](#ios-13-scenes)
     3. [Handling Notifications](#user-content-handling-notifications)
-    4. [Tracking users](#user-content-tracking-users)
-    5. [Disable automatic permission requests](#user-content-disable-automatic-permission-requests)
-    6. [Programmatically Disable Advertising](#programmatically-disable-advertising)
-    7. [GDPR](#user-content-gdpr)
-    8. [Receive custom events](#user-content-receive-custom-events)
+4. [Advanced Configurations](#advanced-configurations)
+    1. [Tracking users](#user-content-tracking-users)
+    2. [Programmatically Disable Advertising](#programmatically-disable-advertising)
+    3. [Receive custom events](#user-content-receive-custom-events)
+4. [User Consent and GDPR](#user-consent-and-gdpr)
 
 ## Installation
 
 ### Installation using CocoaPods
 
-1. Install or update `CocoaPods` to version **1.9.0 or later**, which is
-   essential for proper support of the new *xcframework* format.
+1.  Install or update `CocoaPods` to version **1.9.0 or later**, which is
+    essential for proper support of the new *xcframework* format.
 
-2. In your terminal execute `pod init` from your project directory, if the
-   project is not already pod-enabled
+2.  In your terminal execute `pod init` from your project directory, if the
+    project is not already pod-enabled
 
-3. Edit your project Podfile and add `pod 'JTProximitySDK'` to your main
-   application target
+3.  Edit your project Podfile and add `pod 'JTProximitySDK'` to your main
+    application target
 
-4. In your terminal execute `pod install` from your project directory.
+4.  In your terminal execute `pod install` from your project directory.
 
 eg:
 
@@ -56,18 +59,84 @@ project (remember to check *"Copy items if needed"*).
 Libraries, and Embedded Content** section of the **General** tab of your project
 and that the *embed* mode is **Embed & Sign**
 
-## Project settings
-You have to put in the `Info.plist` of your project the following settings:
+## Permissions and Settings
 
-### Location usage description
+The following section describes the permissions required by the SDK, along with
+the necessary keys that must be added to the application Info.plist file.
+
+### Important Notice
+
+Starting with SDK version **1.12.0**, all the required permissions are no longer
+automatically requested when starting the SDK, but must be requested from the
+user by the application itself. To simplify this process, the SDK exposes
+helper methods to request them (such methods are presented below).
+
+### User Tracking Permission
+
+As describe [here](user-tracking-usage-description), user tracking
+permission requires the following key to be added to the application
+**Info.plist** file:
 
 ```xml
-<key>NSLocationAlwaysUsageDescription</key>
-<string>Location usage description</string>
+<key>NSUserTrackingUsageDescription</key>
+<string>User Tracking Usage Description</string>
+```
+
+A helper method is provided to easily request tracking authorization:
+
+##### Swift
+
+```swift
+Proximity.shared.requestTrackingAuthorization()
+```
+
+##### Objective C
+
+```objc
+[JTProximitySDK.sharedInstance requestTrackingAuthorization];
+```
+
+### Notifications Permission
+
+A helper method is provided to easily request notification authorization:
+
+##### Swift
+
+```swift
+Proximity.shared.requestNotificationAuthorization()
+```
+
+##### Objective C
+
+```objc
+[JTProximitySDK.sharedInstance requestNotificationAuthorization];
+```
+
+### Location Permission
+
+As described [here](location-usage-description), user location permission
+requires the following keys to be added to the application **Info.plist**
+file:
+
+```xml
 <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 <string>Location usage description</string>
 <key>NSLocationWhenInUseUsageDescription</key>
 <string>Location usage description</string>
+```
+
+A helper method is provided to easily request location authorization:
+
+##### Swift
+
+```swift
+Proximity.shared.requestLocationAuthorization()
+```
+
+##### Objective C
+
+```objc
+[JTProximitySDK.sharedInstance requestLocationAuthorization];
 ```
 
 ## Initialization
@@ -191,6 +260,8 @@ func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive respo
 }
 ```
 
+## Advanced Configurations
+
 ### Tracking users
 
 The SDK associates each tracked event with the *IDFA*. If the *IDFA* is not
@@ -212,20 +283,6 @@ initialization of the SDK anywhere in your code with the following line:
 ```swift
 ProximitySDK.shared.installationId()
 ```
-
-### Disable automatic permission requests
-
-You can disable the SDK automatic location and notification permission requests
-during initialization by setting to NO the following properties on
-`JTProximitySDK.sharedInstance`:
-
-- `promptForPushNotifications` : set to `NO` to disable the automatic request
-  for user notifications permission
-- `promptForLocationAuthorization` : set to `NO` to disable the automatic
-  request for user location permission
-
-Note: the properties must be set before calling any
-`initWithLaunchOptions:apiKey:apiSecret:` method.
 
 ### Programmatically Disable Advertising
 
@@ -254,7 +311,17 @@ ProximitySDK.shared.advertisingEnabled = false
 ProximitySDK.shared.advertisingEnabled = true
 ```
 
-### GDPR
+### Receive Custom Events
+
+You can receive custom advertising events (if configured in the backend) to
+integrate application-specific features by using the `customDelegate` property
+of `ProximitySDK` instance.
+
+When the application user interacts with a custom-action notification, the
+`jtProximityDidReceiveCustomAction:` method is invoked by passing a
+`customAction` NSString object.
+
+## User Consent and GDPR
 
 As a publisher, you should integrate a Consent Management Platform (CMP) and
 request for vendor and purpose consents as outlined in IAB Europe’s Mobile
@@ -268,12 +335,8 @@ IAB-compatible CMP library is present, you must enable the feature through the
 `initWithLaunchOptions:apiKey:apiSecret:` method to guarantee an error-free
 process**.
 
-### Receive custom events
 
-You can receive custom advertising events (if configured in the backend) to
-integrate application-specific features by using the `customDelegate` property
-of `ProximitySDK` instance.
+---
 
-When the application user interacts with a custom-action notification, the
-`jtProximityDidReceiveCustomAction:` method is invoked by passing a
-`customAction` NSString object.
+[user-tracking-usage-description]: https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription
+[location-usage-description]: https://developer.apple.com/documentation/bundleresources/information_property_list/nslocationalwaysandwheninuseusagedescription
