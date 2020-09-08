@@ -21,17 +21,8 @@
     [[JTProximitySDK sharedInstance] setLogLevel:JTPLogLevelVerbose];
     [[JTProximitySDK sharedInstance] setCustomDelegate:self];
     [[JTProximitySDK sharedInstance] initWithLaunchOptions:launchOptions apiKey:@"598322107a5b646fd1785fd9" apiSecret:@"qxUe5vECy5DPeXmeFhPHOerVYdVDg34/StHkV3IPNdA927v4"];
-    if (@available(iOS 10.0, *)) {
-        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
-    }
-    // Override point for customization after application launch.
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
     return YES;
-}
-
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    if ([[JTProximitySDK sharedInstance] application:application didReceiveLocalNotification:notification]) {
-        return;
-    }
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler __IOS_AVAILABLE(10.0) {
