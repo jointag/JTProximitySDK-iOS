@@ -26,13 +26,10 @@
 
 1.  Install or update `CocoaPods` to version **1.9.0 or later**, which is
     essential for proper support of the new *xcframework* format.
-
 2.  In your terminal execute `pod init` from your project directory, if the
     project is not already pod-enabled
-
 3.  Edit your project Podfile and add `pod 'JTProximitySDK'` to your main
     application target
-
 4.  In your terminal execute `pod install` from your project directory.
 
 eg:
