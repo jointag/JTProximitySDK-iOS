@@ -6,47 +6,51 @@
 	<dict>
 		<key>Adv.storyboardc/Info.plist</key>
 		<data>
-		NNAiIgHepAEnkvORFGU9Im4mvV4=
+		OyfTnq8kqVxKSGV3Kv0oHA8tPn4=
 		</data>
 		<key>Adv.storyboardc/U5T-w4-n6K-view-nwg-Cn-Jvs.nib</key>
 		<data>
-		k7DCtiaEqzwSgH/qef1sEVtYd4Y=
+		zBrqX4dCZYTbIRC7ZHZVsuRpASA=
 		</data>
 		<key>Adv.storyboardc/azn-j3-oaa-view-NiP-vc-faV.nib</key>
 		<data>
-		3UjvmvdssFzuZlsumJAGLR/xi2w=
+		ZBPctkgsKs3wQJlmRXlmp+qRD+g=
 		</data>
 		<key>Adv.storyboardc/imageViewController.nib</key>
 		<data>
-		MFY+7sKZDRGjRfR1Wkr8pUqpBXI=
+		gFEdgrdKaP94rLRtoHgpYpMu8jY=
 		</data>
 		<key>Adv.storyboardc/rqR-1X-kuW-view-BTN-3O-pFQ.nib</key>
 		<data>
-		ovvmO560X8gxeaWHrnGCS6p1O70=
+		SIhEyuWqeOPIeOqwZUrHLb6KtVA=
 		</data>
 		<key>Adv.storyboardc/videoViewController.nib</key>
 		<data>
-		jxjsYU87Q2CNymR2OMNIbyuJg0k=
+		ioS0Q61gBQ4qkJe2RJx/sk46Xs0=
 		</data>
 		<key>Adv.storyboardc/webViewController.nib</key>
 		<data>
-		Bvih0n/9DPVhf/piEB0O/h4XL2I=
+		la+gQBQA/QKZXiMwy4iqgfqZyio=
 		</data>
 		<key>Assets.car</key>
 		<data>
-		1Irc34KGlB8FlX4FiG0IbLvf1zI=
+		wWAd2xTOWmKJR0Ba9s6Wz2dIeNg=
 		</data>
 		<key>Headers/JTPLogger.h</key>
 		<data>
 		9wMh+/weWf1eFWQbUBuSlz/Y4hU=
 		</data>
+		<key>Headers/JTPManualConsent.h</key>
+		<data>
+		ESEENeDdQ97bSXxPp5Yr2MzCXrI=
+		</data>
 		<key>Headers/JTProximitySDK.h</key>
 		<data>
-		28W1kvbGBQNp150iTnAAbLi5zf8=
+		Tjhh/TOyvCZdhUSG+hBRCILMn04=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		mACqtLlWfhXtJuoWnSGz89bmRzc=
+		1+0f4gc40pwkEygvcdYBpRW8FpM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -77,88 +81,88 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			NNAiIgHepAEnkvORFGU9Im4mvV4=
+			OyfTnq8kqVxKSGV3Kv0oHA8tPn4=
 			</data>
 			<key>hash2</key>
 			<data>
-			DNVyPMhsHn8Fzg7c4/ZrunzufnpDamsPXDre2W9wcnU=
+			KU8/slgDim0+nO/5jwvQliUo5IH/gnuX31/mNHvvkfA=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/U5T-w4-n6K-view-nwg-Cn-Jvs.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			k7DCtiaEqzwSgH/qef1sEVtYd4Y=
+			zBrqX4dCZYTbIRC7ZHZVsuRpASA=
 			</data>
 			<key>hash2</key>
 			<data>
-			dsnYuj/i4JIm0ESsinoCha+EzwXOajhj6iFEAAlmmiM=
+			Fef+oTQ9VacHTIDbRVDe+BuWm/JQMDm2FSKALwdfto0=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/azn-j3-oaa-view-NiP-vc-faV.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			3UjvmvdssFzuZlsumJAGLR/xi2w=
+			ZBPctkgsKs3wQJlmRXlmp+qRD+g=
 			</data>
 			<key>hash2</key>
 			<data>
-			G0e32JqH725wKUzD5WKsRqy3ozbyUmRQvVUxYzTdkp0=
+			RWm4/6vz9rVsDsMVD0fPqVSasvwqK0VlKoDdVKM7MeI=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/imageViewController.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			MFY+7sKZDRGjRfR1Wkr8pUqpBXI=
+			gFEdgrdKaP94rLRtoHgpYpMu8jY=
 			</data>
 			<key>hash2</key>
 			<data>
-			P19Oq5/zFj0ChwtDHHoq/GI9psM4sI6DhIKlNRUMzWE=
+			38C7NQivXumHXHtm9lZRxJZgjZOJc2S4SCw5P9wzg+Q=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/rqR-1X-kuW-view-BTN-3O-pFQ.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ovvmO560X8gxeaWHrnGCS6p1O70=
+			SIhEyuWqeOPIeOqwZUrHLb6KtVA=
 			</data>
 			<key>hash2</key>
 			<data>
-			+tgmueHbOF+07M8r+NsLy36URAPQt40o+j+4Fp20GEo=
+			J32jUS1p6Zr5VdAHtTYZoiQbvI5mpi6S8OrXDBgZBlE=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/videoViewController.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			jxjsYU87Q2CNymR2OMNIbyuJg0k=
+			ioS0Q61gBQ4qkJe2RJx/sk46Xs0=
 			</data>
 			<key>hash2</key>
 			<data>
-			oSEAz4NGBZxcYdfZXIGn+X8ncLCcQtSUMFaYJ3z579E=
+			l+4+DGsPtpQZIPI8fuwZj4YeGUCPskNEPxEqSqYWgAk=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/webViewController.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Bvih0n/9DPVhf/piEB0O/h4XL2I=
+			la+gQBQA/QKZXiMwy4iqgfqZyio=
 			</data>
 			<key>hash2</key>
 			<data>
-			+cX25A1+RPpKPFxeDiB9EjmsarMt7EHTLKk8KHrgUE0=
+			yWtgEN6WZF05TqYVbtjOzxQKZ/iEox2QzTXD3PAIr1c=
 			</data>
 		</dict>
 		<key>Assets.car</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			1Irc34KGlB8FlX4FiG0IbLvf1zI=
+			wWAd2xTOWmKJR0Ba9s6Wz2dIeNg=
 			</data>
 			<key>hash2</key>
 			<data>
-			cAeMG+M0Y6qOnvaUwdQ6qKNbiPlxY0Bfo7MiQfr1K6Q=
+			sLGzOxrl5UWlvN1wwtdwgo7Yqz4odMHxlmQkpStQWbk=
 			</data>
 		</dict>
 		<key>Headers/JTPLogger.h</key>
@@ -172,15 +176,26 @@
 			lv+zhKL4+sah56LgDsUnn3xp8c2A6+hPs3HBC5ruchw=
 			</data>
 		</dict>
+		<key>Headers/JTPManualConsent.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ESEENeDdQ97bSXxPp5Yr2MzCXrI=
+			</data>
+			<key>hash2</key>
+			<data>
+			d51lbTCGMh5ZNH4HiG26gp11KskhGaadh2IgHSfwpAw=
+			</data>
+		</dict>
 		<key>Headers/JTProximitySDK.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			28W1kvbGBQNp150iTnAAbLi5zf8=
+			Tjhh/TOyvCZdhUSG+hBRCILMn04=
 			</data>
 			<key>hash2</key>
 			<data>
-			orFzGO03WNPUfzJdVDvQNt8R5l4+LxKk5Okm4M8wmy4=
+			PAmBT8UWIXTBtqFRXGwqIF6TG2WMzOZ6YCJCfwF3XFQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

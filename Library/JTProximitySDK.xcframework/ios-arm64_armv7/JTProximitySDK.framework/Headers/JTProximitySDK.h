@@ -7,6 +7,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <JTProximitySDK/JTPLogger.h>
+#import <JTProximitySDK/JTPManualConsent.h>
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
 
@@ -39,6 +40,11 @@ NS_SWIFT_NAME(ProximitySDK)
  Default to YES
  */
 @property (assign, nonatomic) BOOL advertisingEnabled;
+
+/**
+ A unique user identifying string, supplied by the app
+ */
+@property (strong, nonatomic, nullable) NSString *externalUserId;
 
 /**
 @deprecated Notification permission is no longer prompted automatically
@@ -122,21 +128,48 @@ NS_SWIFT_NAME(ProximitySDK)
 - (void)requestLocationAuthorization;
 
 /**
- Set the GDPR consent manually for the current installation.
- This method is intended as a replacement for the implementation of a IAB-compatible CMP platform
+ Set a specific tag for the current user.
 
+ @param value the tag value
+ @param key the tag name
+
+ @note Only numbers, booleans, strings and NSNull objects are allowed as "value"
+ */
+- (void)sendTag:(nullable id)value forKey:(nonnull NSString *)key NS_SWIFT_NAME(sendTag(_:for:));
+
+/**
+ Set multiple tags for the current user.
+
+ @param tags each key-value pair in the "tags" dictionary is mapped to a tag.
+
+ @note Only numbers, booleans, strings and NSNull objects are allowed as "value", only strings are allowed as keys
+ */
+- (void)sendTags:(nonnull NSDictionary<NSString *, id> *)tags;
+
+
+- (BOOL)getManualConsentForType:(JTPManualConsent)type NS_SWIFT_NAME(getManualConsent(for:));
+
+- (void)setManualConsent:(BOOL)consent forType:(JTPManualConsent)type NS_SWIFT_NAME(setManualConsent(_:for:));
+
+/**
+ Set the GDPR consent manually for the current installation.
+ This method is intended as a replacement for the implementation of a
+ IAB-compatible CMP platform
+
+ @deprecated Use setManualConsent:forType:
  @note cmpEnabled must be set to YES before using this method
  @see cmpEnabled
  */
-- (void)setGDPRConsent:(BOOL)consent forVendor:(int)vendorId;
+- (void)setGDPRConsent:(BOOL)consent forVendor:(int)vendorId __deprecated_msg("Use setManualConsent:forType:");
 
 /**
  Get current installation GDPR consent status.
 
+ @deprecated Use getManualConsentForType:
  @return true if the user consent has been given manually, or through a
  IAB-compatible CMP platform if present and the user is subjected to GDPR
  regulation.
  */
-- (BOOL)getGDPRConsentForVendor:(int) vendorId;
+- (BOOL)getGDPRConsentForVendor:(int) vendorId __deprecated_msg("Use getManualConsentForType:");
 
 @end
