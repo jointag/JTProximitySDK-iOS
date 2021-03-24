@@ -15,10 +15,14 @@
     2. [iOS 13 Scenes](#ios-13-scenes)
     3. [Handling Notifications](#user-content-handling-notifications)
 4. [Advanced Configurations](#advanced-configurations)
-    1. [Tracking users](#user-content-tracking-users)
+    1. [Tracking User Identifiers](#user-content-tracking-user-identifiers)
+    2. [Data Tags](#user-content-data-tags)
     2. [Programmatically Disable Advertising](#programmatically-disable-advertising)
     3. [Receive custom events](#user-content-receive-custom-events)
 4. [User Consent and GDPR](#user-consent-and-gdpr)
+    1. [Enabling the Consent Flow support](#user-consent-enabling-the-consent-flow-support)
+    2. [Using Consent Management Platform](#user-consent-using-consent-management-platform)
+    3. [Implementing a Custom Consent Flow](#user-consent-implementing-a-custom-consent-flow)
 
 ## Installation
 
@@ -81,13 +85,13 @@ permission requires the following key to be added to the application
 
 A helper method is provided to easily request tracking authorization:
 
-##### Swift
+**Swift**
 
 ```swift
 Proximity.shared.requestTrackingAuthorization()
 ```
 
-##### Objective C
+**Objective-C**
 
 ```objc
 [JTProximitySDK.sharedInstance requestTrackingAuthorization];
@@ -97,13 +101,13 @@ Proximity.shared.requestTrackingAuthorization()
 
 A helper method is provided to easily request notification authorization:
 
-##### Swift
+**Swift**
 
 ```swift
 Proximity.shared.requestNotificationAuthorization()
 ```
 
-##### Objective C
+**Objective-C**
 
 ```objc
 [JTProximitySDK.sharedInstance requestNotificationAuthorization];
@@ -124,17 +128,18 @@ file:
 
 A helper method is provided to easily request location authorization:
 
-##### Swift
+**Objective-C**
+
+```objc
+[JTProximitySDK.sharedInstance requestLocationAuthorization];
+```
+
+**Swift**
 
 ```swift
 Proximity.shared.requestLocationAuthorization()
 ```
 
-##### Objective C
-
-```objc
-[JTProximitySDK.sharedInstance requestLocationAuthorization];
-```
 
 ## Initialization
 
@@ -142,7 +147,7 @@ Place the following code inside the `UIApplicationDelegate` of your application:
 
 ### Simple Initialization
 
-##### Objective-C
+**Objective-C**
 
 ```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -151,7 +156,7 @@ Place the following code inside the `UIApplicationDelegate` of your application:
 }
 ```
 
-##### Swift
+**Swift**
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -169,6 +174,8 @@ UIWindowSceneDelegate.
 
 To do this you must add the following code to your current UIWindowSceneDelegate
 `scene:willConnectToSession:options:` :
+
+**Swift**
 
 ```swift
 import UIKit
@@ -190,18 +197,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 To enable the SDK to correctly send and manager advertising notifications, you
 must implement the following method in your `UIApplicationDelegate`:
 
-##### Objective-C
+**Objective-C**
 
 ```objc
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    if ([[JTProximitySDK sharedInstance] application:application didReceiveLocalNotification:notification]) {
+    if ([JTProximitySDK.sharedInstance application:application didReceiveLocalNotification:notification]) {
         return;
     }
     // Other application logics
 }
 ```
 
-##### Swift
+**Swift**
 
 ```swift
 func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
@@ -215,11 +222,11 @@ func application(_ application: UIApplication, didReceive notification: UILocalN
 If you plan to support **iOS 10.0** or later, you must also add this code in
 your `UNUserNotificationCenterDelegate` methods:
 
-##### Objective-C
+**Objective-C**
 
 ```objc
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler __IOS_AVAILABLE(10.0) {
-    if ([[JTProximitySDK sharedInstance] userNotificationCenter:center willPresentNotification:notification]) {
+    if ([JTProximitySDK.sharedInstance userNotificationCenter:center willPresentNotification:notification]) {
         completionHandler(UNNotificationPresentationOptionAlert|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound);
         return;
     }
@@ -227,7 +234,7 @@ your `UNUserNotificationCenterDelegate` methods:
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler __IOS_AVAILABLE(10.0) {
-    if ([[JTProximitySDK sharedInstance] userNotificationCenter:center didReceiveNotificationResponse:response]) {
+    if ([JTProximitySDK.sharedInstance userNotificationCenter:center didReceiveNotificationResponse:response]) {
         completionHandler();
         return;
     }
@@ -235,7 +242,7 @@ your `UNUserNotificationCenterDelegate` methods:
 }
 ```
 
-##### Swift
+**Swift**
 
 ```swift
 @available(iOS 10.0, *)
@@ -259,26 +266,159 @@ func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive respo
 
 ## Advanced Configurations
 
-### Tracking users
+### Tracking User Identifiers
 
-The SDK associates each tracked event with the *IDFA*. If the *IDFA* is not
-available due to a user permission denial, the device can be identified by the
-*installationId*. The *installationId* identifies in particular a specific
-installation of the SDK in a certain app on a certain device. If the app
-containing the SDK is uninstalled and then installed again the *installationId*
-will be a different one. You can retrieve the *installationId* after the
-initialization of the SDK anywhere in your code with the following line:
+#### Advertising ID and Installation ID
 
-##### Objective-C
+The SDK associates each tracked request with the *advertisingId*. If the
+*advertisingId* is not available due to a user permission denial, the device can
+be identified by the *installationId*. The *installationId* is a randomly
+generated UUID created during the first initialization that hence identifies a
+specific installation of the SDK for that application. If the app containing the
+SDK is uninstalled and then installed again the *installationId* will be a
+different one. You can retrieve the *installationId* after the initialization of
+the SDK anywhere in your code with the following line:
+
+**Objective-C**
 
 ```objc
-[JTProximitySDK sharedInstance].installationId;
+JTProximitySDK.sharedInstance.installationId;
 ```
 
-##### Swift
+**Swift**
 
 ```swift
 ProximitySDK.shared.installationId()
+```
+
+#### External User ID
+
+
+The `externalUserId` is an identifier you set to pair a unique user identifier
+of your choice with our` installationId`. Tipically this identifier must be set
+after a user has signed in to your application, and must be removed after the
+same user decides to sign out of you application.
+
+You can choose any string of 255 characters or less as externalUserId.
+
+Your **externalUserId** can be paired with multiple **installationId**, for
+example if the same user uses your app on multiple devices, or if the same user
+uninstalled and installed your app multiple times.
+
+On the other hand, the same **installationId** can be associated with one and
+only one **externalUserId**, usually the last one sent.
+
+For example, you can use the user record id of your database or your CRM, or the
+hash of an email address, or a third party platform identifier.
+
+Use the `setExternalUserId` method to add your unique external user ids:
+
+**Objective-C**
+
+```objc
+// Set
+[JTProximitySDK.sharedInstance setExternalUserId: @"SOME ID"];
+// Unset
+[JTProximitySDK.sharedInstance setExternalUserId: nil];
+```
+
+**Swift**
+
+```swift
+// Set
+ProximitySDK.shared.externalUserId = "SOME ID"
+// Unset
+ProximitySDK.shared.externalUserId = nil
+```
+
+### Data Tags
+
+Tags are custom key-value pairs of `string`, `number`, `boolean` or `NSNull` type,
+that can be sent to our server through the SDK methods and that allow you a more
+effective campaigns targeting, or to receive personalized analysis based on the
+characteristics of your users.
+
+Tags can be set or unset (with a `null` value) using the following methods:
+
+#### sendTag
+
+The `sendTag` method allow to set or unset a single tag at a time.
+
+The method can be called multiple times. When sending different keys, its
+effects are cumulative. If the same key is used, the last value overwrites the
+previous ones.
+
+**Objective-C**
+
+```objc
+[JTProximitySDK.sharedInstance sendTag: @"value" forKey: "key1"];
+// -> { "key1" : "value" }
+[JTProximitySDK.sharedInstance sendTag:@1 forKey:@"key2"];
+// -> { "key1" : "value", "key2" : 1 }
+[JTProximitySDK.sharedInstance sendTag:@YES forKey:@"key3"];
+// -> { "key1" : "value", "key2" : 1, "key3" : true }
+[JTProximitySDK.sharedInstance sendTag:@NO forKey:@"key3"];
+// -> { "key1" : "value", "key2" : 1, "key3" : false }
+[JTProximitySDK.sharedInstance sendTag:nil forKey:@"key2"];
+// -> { "key1" : "value", "key3" : false }
+```
+
+**Swift**
+
+```swift
+ProximitySDK.shared.sendTag("value", for: "key1");
+// -> { "key1" : "value" }
+ProximitySDK.shared.sendTag(1, for: "key2");
+// -> { "key1" : "value", "key2" : 1 }
+ProximitySDK.shared.sendTag(true, for: "key3");
+// -> { "key1" : "value", "key2" : 1, "key3" : true }
+ProximitySDK.shared.sendTag(false, for: "key3");
+// -> { "key1" : "value", "key2" : 1, "key3" : false }
+ProximitySDK.shared.sendTag(null, for: "key2");
+// -> { "key1" : "value", "key3" : false }
+```
+
+#### sendTags
+
+The `sendTags` method allow to set or unset a multiple tags at a time.
+
+The method can be called multiple times. When sending different keys, its
+effects are cumulative. If the same key is used, the last value overwrites the
+previous ones.
+
+> **Note**: To send a `null` value using a Dictionary you must pass the value
+> using a `NSNull` instance.
+
+**Objective-C**
+
+```objc
+[JTProximitySDK.sharedInstance sendTags:@{
+    @"key1" : "value",
+    @"key2" : @1,
+    @"key3" : @YES,
+}];
+// -> { "key1" : "value", "key2" : 1, "key3" : true }
+[JTProximitySDK.sharedInstance sendTags:@{
+    @"key2" : [NSNull null],
+    @"key3" : @NO,
+}];
+// -> { "key1" : "value", "key3" : false }
+```
+
+**Swift**
+
+```swift
+ProximitySDK.shared.sendTags([
+    "key1" : "value",
+    "key2" : 1,
+    "key3" : true
+])
+// -> { "key1" : "value", "key2" : 1, "key3" : true }
+ProximitySDK.shared.sendTags([
+    "key2" : NSNull(),
+    "key3" : false
+])
+// -> { "key1" : "value", "key3" : false }
 ```
 
 ### Programmatically Disable Advertising
@@ -290,16 +430,16 @@ application. In that case, simply change the property as soon as the user sign
 in or out of the application.
 The default value for the property is `true`.
 
-##### Objective-C
+**Objective-C**
 
 ```objc
 // disable advertising delivery
-[[JTProximitySDK sharedInstance] setAdvertisingEnabled:NO];
+[JTProximitySDK.sharedInstance setAdvertisingEnabled:NO];
 // enable advertising delivery
-[[JTProximitySDK sharedInstance] setAdvertisingEnabled:YES];
+[JTProximitySDK.sharedInstance setAdvertisingEnabled:YES];
 ```
 
-##### Swift
+**Swift**
 
 ```swift
 // disable advertising delivery
@@ -320,18 +460,83 @@ When the application user interacts with a custom-action notification, the
 
 ## User Consent and GDPR
 
-As a publisher, you should integrate a Consent Management Platform (CMP) and
-request for vendor and purpose consents as outlined in IAB Europe’s Mobile
-In-App CMP API v2.0: Transparency & Consent Framework.
+As a publisher, you should implement a user consent flow either **manually** or
+using a **Consent Management Platform** (CMP) and request for vendor and purpose
+consents as outlined in IAB Europe’s Mobile In-App CMP API v2.0: Transparency
+& Consent Framework.
+
+### Enabling the Consent Flow support
 
 To ensure that the SDK support the handling of user-consent preferences when a
 IAB-compatible CMP library is present, you must enable the feature through the
 `ProximitySDK.setCmpEnabled:` method, which is `false` by default.
 
-**This method must be called before the library
-`initWithLaunchOptions:apiKey:apiSecret:` method to guarantee an error-free
-process**.
+> ⚠️ **Attention**: This method must be called before the library
+> `initWithLaunchOptions:apiKey:apiSecret:` method to guarantee an error-free
+> process.
 
+#### Using Consent Management Platform
+
+When configuring a third-party CMP to use with the Jointag Proximity SDK, the
+following requirements must be met:
+
+- In order to enable the delivery of advertising, a `custom publisher purpose`
+    **must be** configured in the CMP, and it **must be** the first custom
+    purpose.
+
+#### Implementing a Custom Consent Flow
+
+If you need to handle the user consent flow manually without the use of a
+IAB-compatible CMP library, or if the CMP you are using do not allow the
+customization of **custom publisher purpose**, it is possibile to do so by
+implementing an in-app consent screen and interacting with the SDK using the
+following methods:
+
+**Objective-C**
+
+```objc
+// Retrieve or update the manual user profiling consent
+[JTProximitySDK.sharedInstance getManualConsentForType:JTPManualConsentProfiling];
+[JTProximitySDK.sharedInstance setManualConsent:YES forType:JTPManualConsentProfiling];
+
+// Retrieve or update the manual user monitoring consent
+[JTProximitySDK.sharedInstance getManualConsentForType:JTPManualConsentMonitoring];
+[JTProximitySDK.sharedInstance setManualConsent:YES forType:JTPManualConsentMonitoring];
+
+// Retrieve or update the manual user advertising consent
+[JTProximitySDK.sharedInstance getManualConsentForType:JTPManualConsentAdvertising];
+[JTProximitySDK.sharedInstance setManualConsent:YES forType:JTPManualConsentAdvertising];
+
+// Retrieve or update the manual user advanced tracking consent
+[JTProximitySDK.sharedInstance getManualConsentForType:JTPManualConsentAdvancedTracking];
+[JTProximitySDK.sharedInstance setManualConsent:YES forType:JTPManualConsentAdvancedTracking];
+```
+
+**Swift**
+
+```swift
+// Retrieve or update the manual user profiling consent
+ProximitySDK.shared.getManualConsent(for: .profiling);
+ProximitySDK.shared.setManualConsent(true, for: .profiling);
+
+// Retrieve or update the manual user monitoring consent
+ProximitySDK.shared.getManualConsent(for: .monitoring);
+ProximitySDK.shared.setManualConsent(true, for: .monitoring);
+
+// Retrieve or update the manual user advertising consent
+ProximitySDK.shared.getManualConsent(for: .advertising);
+ProximitySDK.shared.setManualConsent(true, for: .advertising);
+
+// Retrieve or update the manual user advanced tracking consent
+ProximitySDK.shared.getManualConsent(for: .advancedTracking);
+ProximitySDK.shared.setManualConsent(true, for: .advancedTracking);
+```
+
+---
+
+> ⚠️ **Attention**: When the **manual consent method** is used in the presence
+> of a **CMP library**, the choices made using the above methods take precedence
+> over the choices made by the user in the CMP library screen.
 
 ---
 
