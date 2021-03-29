@@ -21,8 +21,8 @@
     [JTProximitySDK.sharedInstance setLogLevel:JTPLogLevelVerbose];
     [JTProximitySDK.sharedInstance setCustomDelegate:self];
     [JTProximitySDK.sharedInstance setExternalUserId:@"some-external-id"];
-    [JTProximitySDK.sharedInstance sendTag:@"blue" forKey:@"color"];
     [JTProximitySDK.sharedInstance initWithLaunchOptions:launchOptions apiKey:@"598322107a5b646fd1785fd9" apiSecret:@"qxUe5vECy5DPeXmeFhPHOerVYdVDg34/StHkV3IPNdA927v4"];
+    [JTProximitySDK.sharedInstance sendTag:@"blue" forKey:@"color"];
     [UNUserNotificationCenter currentNotificationCenter].delegate = self;
     return YES;
 }

@@ -1,4 +1,4 @@
-# JTProximitySDK Documentation
+# Jointag Proximity SDK Documentation
 
 ## Table of Contents
 
@@ -10,8 +10,8 @@
     2. [User Tracking Permission](#user-tracking-permission)
     3. [Notifications Permission](#notifications-permission)
     4. [Location Permission](#location-permission)
-3. [Initialization](#user-content-initialization)
-    1. [Simple Initialization](#user-content-simple-initialization)
+3. [Setup](#user-content-setup)
+    1. [Initializating the SDK](#user-content-initializating-the-sdk)
     2. [iOS 13 Scenes](#ios-13-scenes)
     3. [Handling Notifications](#user-content-handling-notifications)
 4. [Advanced Configurations](#advanced-configurations)
@@ -47,6 +47,8 @@ end
 
 More on [CocoaPods here](https://cocoapods.org/).
 
+---
+
 ### Manual Installation
 
 Jointag Proximity SDK is distribute as a compiled **xcframework** with binaries
@@ -65,12 +67,13 @@ and that the *embed* mode is **Embed & Sign**
 The following section describes the permissions required by the SDK, along with
 the necessary keys that must be added to the application Info.plist file.
 
-### Important Notice
+> ⚠️ Attention : Starting with SDK version **1.12.0**, all the required
+> permissions are no longer automatically requested when starting the SDK, but
+> must be requested from the user by the application itself. To simplify this
+> process, the SDK exposes helper methods to request them (such methods are
+> presented below).
 
-Starting with SDK version **1.12.0**, all the required permissions are no longer
-automatically requested when starting the SDK, but must be requested from the
-user by the application itself. To simplify this process, the SDK exposes
-helper methods to request them (such methods are presented below).
+---
 
 ### User Tracking Permission
 
@@ -97,6 +100,8 @@ Proximity.shared.requestTrackingAuthorization()
 [JTProximitySDK.sharedInstance requestTrackingAuthorization];
 ```
 
+---
+
 ### Notifications Permission
 
 A helper method is provided to easily request notification authorization:
@@ -112,6 +117,8 @@ Proximity.shared.requestNotificationAuthorization()
 ```objc
 [JTProximitySDK.sharedInstance requestNotificationAuthorization];
 ```
+
+---
 
 ### Location Permission
 
@@ -141,11 +148,11 @@ Proximity.shared.requestLocationAuthorization()
 ```
 
 
-## Initialization
+## Setup
+
+### Initializating the SDK
 
 Place the following code inside the `UIApplicationDelegate` of your application:
-
-### Simple Initialization
 
 **Objective-C**
 
@@ -165,6 +172,8 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     return true
 }
 ```
+
+---
 
 ### iOS 13 Scenes
 
@@ -192,35 +201,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 ```
 
+---
+
 ### Handling Notifications
 
 To enable the SDK to correctly send and manager advertising notifications, you
-must implement the following method in your `UIApplicationDelegate`:
-
-**Objective-C**
-
-```objc
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    if ([JTProximitySDK.sharedInstance application:application didReceiveLocalNotification:notification]) {
-        return;
-    }
-    // Other application logics
-}
-```
-
-**Swift**
-
-```swift
-func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-    if (ProximitySDK.shared.application(application, didReceive: notification)) {
-        return
-    }
-    // Other application logics
-}
-```
-
-If you plan to support **iOS 10.0** or later, you must also add this code in
-your `UNUserNotificationCenterDelegate` methods:
+must implement the following method in your `UNUserNotificationCenterDelegate`:
 
 **Objective-C**
 
@@ -258,6 +244,45 @@ func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent noti
 func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
     if ProximitySDK.shared.userNotificationCenter(center, didReceive: response) {
         completionHandler()
+        return
+    }
+    // Other application logics
+}
+```
+
+> ⚠️ Attention: Many third-party push notification libraries adopt the practice
+> of replacing the default `UNUserNotificationCenterDelegate` entirely, or to
+> _swizzle_ the methods of the current delegate. In this case you will notice
+> that the normal delegate methods are not called, and the **Jointag Proximity
+> SDK** will not display or open proximity notifications.
+>
+> Usually the libraries that have this kind of implementation offers alternative
+> methods to receive the required events.
+>
+> If this is your case, **please read carefully the third-party library
+> documentation** to know how to implement the above methods via their library.
+
+---
+
+If you plan to keep supporting **iOS 9.0** or earlier, you must also implement
+this `UIApplicationDelegate` deprecated methods:
+
+**Objective-C**
+
+```objc
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    if ([JTProximitySDK.sharedInstance application:application didReceiveLocalNotification:notification]) {
+        return;
+    }
+    // Other application logics
+}
+```
+
+**Swift**
+
+```swift
+func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+    if (ProximitySDK.shared.application(application, didReceive: notification)) {
         return
     }
     // Other application logics
@@ -330,6 +355,8 @@ ProximitySDK.shared.externalUserId = "SOME ID"
 // Unset
 ProximitySDK.shared.externalUserId = nil
 ```
+
+---
 
 ### Data Tags
 
@@ -421,6 +448,8 @@ ProximitySDK.shared.sendTags([
 // -> { "key1" : "value", "key3" : false }
 ```
 
+---
+
 ### Programmatically Disable Advertising
 
 It is possible to programmatically disable/enable the advertising delivery by
@@ -448,6 +477,8 @@ ProximitySDK.shared.advertisingEnabled = false
 ProximitySDK.shared.advertisingEnabled = true
 ```
 
+---
+
 ### Receive Custom Events
 
 You can receive custom advertising events (if configured in the backend) to
@@ -464,6 +495,8 @@ As a publisher, you should implement a user consent flow either **manually** or
 using a **Consent Management Platform** (CMP) and request for vendor and purpose
 consents as outlined in IAB Europe’s Mobile In-App CMP API v2.0: Transparency
 & Consent Framework.
+
+---
 
 ### Enabling the Consent Flow support
 
