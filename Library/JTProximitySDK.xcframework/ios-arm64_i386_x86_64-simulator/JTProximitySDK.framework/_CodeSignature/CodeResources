@@ -10,31 +10,31 @@
 		</data>
 		<key>Adv.storyboardc/U5T-w4-n6K-view-nwg-Cn-Jvs.nib</key>
 		<data>
-		nHgH80on7baU50QWY9wgGJBLVGE=
+		D1f4n4Iu7AiDV0HOVdjRpIwPdAk=
 		</data>
 		<key>Adv.storyboardc/azn-j3-oaa-view-NiP-vc-faV.nib</key>
 		<data>
-		VELbl8+k+RkApxZtfpD0QMri6tA=
+		2wIoFPUuxH11AMy1L+6A/7seaVY=
 		</data>
 		<key>Adv.storyboardc/imageViewController.nib</key>
 		<data>
-		U1snPUEUlmhPgLIPR9iQX5llJRU=
+		BhYjQw8SM9U4G2D9ZRnVEP8s0Bo=
 		</data>
 		<key>Adv.storyboardc/rqR-1X-kuW-view-BTN-3O-pFQ.nib</key>
 		<data>
-		v0mfuQtGkXSxsQOLzlWWq9pQHOw=
+		vXOoWqv/3PEz73B4nDKZcKOW9/M=
 		</data>
 		<key>Adv.storyboardc/videoViewController.nib</key>
 		<data>
-		DeQjTs9c54Wk+//9TmpyFdJyi10=
+		dw8Wus6Lj9aCkU0l6uTP3FzEbeA=
 		</data>
 		<key>Adv.storyboardc/webViewController.nib</key>
 		<data>
-		Xde4KT3HfFmwVMco1phXEfll6qE=
+		9CvS8qr4MIh54FrFggYamx+7zwo=
 		</data>
 		<key>Assets.car</key>
 		<data>
-		wWAd2xTOWmKJR0Ba9s6Wz2dIeNg=
+		VDMokiCHofw3l0SG7RuSY5Z+xWc=
 		</data>
 		<key>Headers/JTPLogger.h</key>
 		<data>
@@ -50,11 +50,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		FQaL0kTrgepeeplv+hAMttQjLjU=
+		haozonduUO3BLi3Y3w5T3WGAmfU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		W/x1LzCip8y1HM79d32OXwY5Ujw=
+		</data>
+		<key>Version.plist</key>
+		<data>
+		Uy+BMmS4ookoOsZIf70FjXBr7j4=
 		</data>
 		<key>en.lproj/Localizable.strings</key>
 		<dict>
@@ -92,77 +96,77 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			nHgH80on7baU50QWY9wgGJBLVGE=
+			D1f4n4Iu7AiDV0HOVdjRpIwPdAk=
 			</data>
 			<key>hash2</key>
 			<data>
-			uDZi8voUH5SzX6DcqLVsZ/QMwanRFKhMtsQFRKwj0Ac=
+			GG53PclmEoFyshTBntISEpEiCvAvX1s5ocxVoavAp9I=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/azn-j3-oaa-view-NiP-vc-faV.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			VELbl8+k+RkApxZtfpD0QMri6tA=
+			2wIoFPUuxH11AMy1L+6A/7seaVY=
 			</data>
 			<key>hash2</key>
 			<data>
-			eD4+1pFtoROUQVpU7Sd7T40xXHnn6UV1oazeiApFTPg=
+			TNE5g//LBtUsyJB2ItT2+kwU1JdsVcua/vIRZCj5BS4=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/imageViewController.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			U1snPUEUlmhPgLIPR9iQX5llJRU=
+			BhYjQw8SM9U4G2D9ZRnVEP8s0Bo=
 			</data>
 			<key>hash2</key>
 			<data>
-			ieS4hLk5b+2ZjtxVjnshtxu1U9oUTgCqBvGgzdt7N5w=
+			MuUUj22GAFIbD/TDwoD70l26oxDbyfT/RJhxJKvHqM0=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/rqR-1X-kuW-view-BTN-3O-pFQ.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			v0mfuQtGkXSxsQOLzlWWq9pQHOw=
+			vXOoWqv/3PEz73B4nDKZcKOW9/M=
 			</data>
 			<key>hash2</key>
 			<data>
-			B4B8XNSDqedtQs3Zj9Rqzj6bxM+ZxRaN1Ko2+gIzfJc=
+			SaBiDdRUE9IAXdgH5Fa0eWqAj2YaDZRwXhN3p+ntWA8=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/videoViewController.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			DeQjTs9c54Wk+//9TmpyFdJyi10=
+			dw8Wus6Lj9aCkU0l6uTP3FzEbeA=
 			</data>
 			<key>hash2</key>
 			<data>
-			aKf8BfY1DgiSRpTUI8kh8QC/uoAHJPYodCSDTgFFSN4=
+			3S2O4FVjHOaWOW7SeILiohSE9/tBkJucA+dyimz7eNE=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/webViewController.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Xde4KT3HfFmwVMco1phXEfll6qE=
+			9CvS8qr4MIh54FrFggYamx+7zwo=
 			</data>
 			<key>hash2</key>
 			<data>
-			PRiePywjWpPsnMMn0t9vTgBd03Zbh3s/1rQwqy+ytxU=
+			Yfe/mWZjOUohqBJE10Lk6VqaWsn/PcS/Ni6za93qUm8=
 			</data>
 		</dict>
 		<key>Assets.car</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			wWAd2xTOWmKJR0Ba9s6Wz2dIeNg=
+			VDMokiCHofw3l0SG7RuSY5Z+xWc=
 			</data>
 			<key>hash2</key>
 			<data>
-			sLGzOxrl5UWlvN1wwtdwgo7Yqz4odMHxlmQkpStQWbk=
+			BNsCgxGqZ3Dy8GluGAheVG/hmchm+qATkxFTYq09ZV4=
 			</data>
 		</dict>
 		<key>Headers/JTPLogger.h</key>
@@ -207,6 +211,17 @@
 			<key>hash2</key>
 			<data>
 			ZyaFq4JNfNaiDREaR1uVDRPWYa3MfDmxHAw+3chPrZ4=
+			</data>
+		</dict>
+		<key>Version.plist</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Uy+BMmS4ookoOsZIf70FjXBr7j4=
+			</data>
+			<key>hash2</key>
+			<data>
+			njKdeumiSeFpXFqL5Am4S1DNWsb492ioU2sdM8h+8bA=
 			</data>
 		</dict>
 		<key>en.lproj/Localizable.strings</key>
