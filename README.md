@@ -262,33 +262,6 @@ func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive respo
 > If this is your case, **please read carefully the third-party library
 > documentation** to know how to implement the above methods via their library.
 
----
-
-If you plan to keep supporting **iOS 9.0** or earlier, you must also implement
-this `UIApplicationDelegate` deprecated methods:
-
-**Objective-C**
-
-```objc
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    if ([JTProximitySDK.sharedInstance application:application didReceiveLocalNotification:notification]) {
-        return;
-    }
-    // Other application logics
-}
-```
-
-**Swift**
-
-```swift
-func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-    if (ProximitySDK.shared.application(application, didReceive: notification)) {
-        return
-    }
-    // Other application logics
-}
-```
-
 ## Advanced Configurations
 
 ### Tracking User Identifiers
