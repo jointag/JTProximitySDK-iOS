@@ -1,6 +1,0 @@
-framework module JTProximitySDK {
-  umbrella header "JTProximitySDK.h"
-
-  export *
-  module * { export * }
-}
