@@ -10,11 +10,11 @@
 		</data>
 		<key>Adv.storyboardc/U5T-w4-n6K-view-nwg-Cn-Jvs.nib</key>
 		<data>
-		D1f4n4Iu7AiDV0HOVdjRpIwPdAk=
+		RGJLN2EabA97LWfCBxKQek9NVzc=
 		</data>
 		<key>Adv.storyboardc/azn-j3-oaa-view-NiP-vc-faV.nib</key>
 		<data>
-		2wIoFPUuxH11AMy1L+6A/7seaVY=
+		5jbDpdX9UX9S49V1zG8HnrK1XVg=
 		</data>
 		<key>Adv.storyboardc/imageViewController.nib</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Adv.storyboardc/rqR-1X-kuW-view-BTN-3O-pFQ.nib</key>
 		<data>
-		vXOoWqv/3PEz73B4nDKZcKOW9/M=
+		dSh7T4PM4Adu7M50Qt7ygFz/ZYg=
 		</data>
 		<key>Adv.storyboardc/videoViewController.nib</key>
 		<data>
@@ -34,7 +34,7 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		MMT6ecZznHTvbVHxaVd4ne9nM1Q=
+		L8uJIukavjEgDftykx8ZcOmTTDg=
 		</data>
 		<key>Headers/JTPLogger.h</key>
 		<data>
@@ -44,21 +44,21 @@
 		<data>
 		ESEENeDdQ97bSXxPp5Yr2MzCXrI=
 		</data>
+		<key>Headers/JTPVersion.h</key>
+		<data>
+		8TwmZ3TeJ53aMEipcLULLmBoo9E=
+		</data>
 		<key>Headers/JTProximitySDK.h</key>
 		<data>
-		rhYL8NjVfp5yHINmFPJHZakwMLI=
+		RBmSoZLAryW02e07HoIZgSubebA=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		m9Z7KxL55R+KiZQmWe/EiUZB6pA=
+		24lj5dKDv9FOFTLLsN8MPvKWc0Q=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		W/x1LzCip8y1HM79d32OXwY5Ujw=
-		</data>
-		<key>Version.plist</key>
-		<data>
-		SUX750cG6mD8jngyklnzR2J+S/0=
+		oHIjmnrmUu0Pb1DSZq9b9Lg1IMc=
 		</data>
 		<key>en.lproj/Localizable.strings</key>
 		<dict>
@@ -92,14 +92,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GG53PclmEoFyshTBntISEpEiCvAvX1s5ocxVoavAp9I=
+			h/APLSWfTHs22TaxOIew85F9kAFg5yWVSNAOkep6BjI=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/azn-j3-oaa-view-NiP-vc-faV.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TNE5g//LBtUsyJB2ItT2+kwU1JdsVcua/vIRZCj5BS4=
+			FnCAHZ0mkVdyXEvJWx0O1xncUePdxEHJvXUf/jA3FIU=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/imageViewController.nib</key>
@@ -113,7 +113,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SaBiDdRUE9IAXdgH5Fa0eWqAj2YaDZRwXhN3p+ntWA8=
+			b4nCORrqhEGcNbf5hwJllCoLeOGp7wWSAnPg0u4UngM=
 			</data>
 		</dict>
 		<key>Adv.storyboardc/videoViewController.nib</key>
@@ -134,7 +134,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			i9pK1M56syxIveh4odvVwoqVIp21oeymC/wqnTfmisg=
+			UTDpO4iD5mKg8bM9NdmLgB1PKdjFF/lf25zSVgs/Pfw=
 			</data>
 		</dict>
 		<key>Headers/JTPLogger.h</key>
@@ -151,25 +151,25 @@
 			d51lbTCGMh5ZNH4HiG26gp11KskhGaadh2IgHSfwpAw=
 			</data>
 		</dict>
+		<key>Headers/JTPVersion.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			+APKS2ASi7DrZfObpx7UrwqAMiSJ+7tRlqazsKgaGKQ=
+			</data>
+		</dict>
 		<key>Headers/JTProximitySDK.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			mu+oN8sOuDSLGXbBmSoboYjlNGUqbXRgSQ/HLUNogDA=
+			EJMZWraPe+99H9BWSwkOepX9D1lttkODajTOgEJr1+Q=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZyaFq4JNfNaiDREaR1uVDRPWYa3MfDmxHAw+3chPrZ4=
-			</data>
-		</dict>
-		<key>Version.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			G+Vf7t1Xzn7KgY4niuw/IIak0SI66tyaN45rc2ql7Gw=
+			p35WpU5DQgdLUB+6Cy9TAKfeFPMMMSLn+eeI9Z9lEHY=
 			</data>
 		</dict>
 		<key>en.lproj/Localizable.strings</key>
