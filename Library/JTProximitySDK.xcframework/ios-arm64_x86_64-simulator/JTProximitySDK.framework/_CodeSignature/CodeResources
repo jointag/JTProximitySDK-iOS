@@ -34,7 +34,7 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		L8uJIukavjEgDftykx8ZcOmTTDg=
+		C6Q6eaAXhmf838sooBONJUqhem0=
 		</data>
 		<key>Headers/JTPLogger.h</key>
 		<data>
@@ -54,11 +54,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		24lj5dKDv9FOFTLLsN8MPvKWc0Q=
+		LxjaQMKDdo42O1uQe0ND2qLiZ9s=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		oHIjmnrmUu0Pb1DSZq9b9Lg1IMc=
+		</data>
+		<key>PrivacyInfo.xcprivacy</key>
+		<data>
+		jqPY9+g4m1GnRf7cxsEEWa77B/Y=
 		</data>
 		<key>en.lproj/Localizable.strings</key>
 		<dict>
@@ -134,7 +138,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			UTDpO4iD5mKg8bM9NdmLgB1PKdjFF/lf25zSVgs/Pfw=
+			GVfFMUG4ZoUqZOX3TO7vwft1XN6esHIv1OnQoMZayaI=
 			</data>
 		</dict>
 		<key>Headers/JTPLogger.h</key>
@@ -170,6 +174,13 @@
 			<key>hash2</key>
 			<data>
 			p35WpU5DQgdLUB+6Cy9TAKfeFPMMMSLn+eeI9Z9lEHY=
+			</data>
+		</dict>
+		<key>PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			HsIhpZvcK6mjNcnZv6atoax3JJ5+XUQaqKgpKwHBA8g=
 			</data>
 		</dict>
 		<key>en.lproj/Localizable.strings</key>
