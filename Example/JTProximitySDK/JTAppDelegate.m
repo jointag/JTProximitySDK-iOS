@@ -18,6 +18,8 @@
 @implementation JTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Enable gallery notifications support
+    [JTProximitySDK.sharedInstance setContentExtensionCategories:JTContentExtensionCategoryGallery];
     [JTProximitySDK.sharedInstance setLogLevel:JTPLogLevelVerbose];
     [JTProximitySDK.sharedInstance setCustomDelegate:self];
     [JTProximitySDK.sharedInstance setExternalUserId:@"some-external-id"];

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "JTProximitySDK"
-  s.version      = "1.15.0-beta.1"
+  s.version      = "1.18.0-rc1"
   s.summary      = "iOS library for Jointag Proximity"
   s.homepage     = "https://www.jointag.com/"
   s.author       = "Next14 S.p.A."

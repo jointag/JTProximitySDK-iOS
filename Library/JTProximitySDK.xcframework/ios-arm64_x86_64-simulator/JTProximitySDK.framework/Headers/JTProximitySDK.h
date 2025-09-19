@@ -6,8 +6,11 @@
 //
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <JTProximitySDK/JTPVersion.h>
 #import <JTProximitySDK/JTPLogger.h>
 #import <JTProximitySDK/JTPManualConsent.h>
+#import <JTProximitySDK/JTContentExtensions.h>
+#import <JTProximitySDK/JTNotificationGalleryView.h>
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
 
@@ -47,21 +50,16 @@ NS_SWIFT_NAME(ProximitySDK)
 @property (strong, nonatomic, nullable) NSString *externalUserId;
 
 /**
-@deprecated Notification permission is no longer prompted automatically
-*/
-@property (assign, nonatomic) BOOL promptForPushNotifications DEPRECATED_MSG_ATTRIBUTE("Notification permission is no longer prompted automatically");
-
-/**
- @deprecated Location permission is no longer prompted automatically
- */
-@property (assign, nonatomic) BOOL promptForLocationAuthorization DEPRECATED_MSG_ATTRIBUTE("Location permission is no longer prompted automatically");
-
-/**
  Enable CMP support for GDPR compliance.
 
  @note MUST be set before calling initWithLaunchOptions:apiKey:apiSecret:
  */
 @property (assign, nonatomic) BOOL cmpEnabled;
+
+/**
+ Declare the supported categories implemented in the host application via a content extension.
+ */
+@property (assign, nonatomic) JTContentExtensionCategories contentExtensionCategories;
 
 /**
  Delegate for custom advertising actions
