@@ -9,6 +9,8 @@
 #import <JTProximitySDK/JTPVersion.h>
 #import <JTProximitySDK/JTPLogger.h>
 #import <JTProximitySDK/JTPManualConsent.h>
+#import <JTProximitySDK/JTContentExtensions.h>
+#import <JTProximitySDK/JTNotificationGalleryView.h>
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
 
@@ -53,6 +55,11 @@ NS_SWIFT_NAME(ProximitySDK)
  @note MUST be set before calling initWithLaunchOptions:apiKey:apiSecret:
  */
 @property (assign, nonatomic) BOOL cmpEnabled;
+
+/**
+ Declare the supported categories implemented in the host application via a content extension.
+ */
+@property (assign, nonatomic) JTContentExtensionCategories contentExtensionCategories;
 
 /**
  Delegate for custom advertising actions

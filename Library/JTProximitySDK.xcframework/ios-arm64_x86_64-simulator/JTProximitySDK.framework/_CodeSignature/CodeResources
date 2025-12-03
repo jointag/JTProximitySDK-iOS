@@ -34,7 +34,15 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		C6Q6eaAXhmf838sooBONJUqhem0=
+		7x2PcPfzTVKwITg+wU9/np7MLV4=
+		</data>
+		<key>Headers/JTContentExtensions.h</key>
+		<data>
+		Nz2cZlHegMmTXZADgIwa/BZQaqw=
+		</data>
+		<key>Headers/JTNotificationGalleryView.h</key>
+		<data>
+		Asl9ZQXtlgPaDu/26q6QN9jEpO8=
 		</data>
 		<key>Headers/JTPLogger.h</key>
 		<data>
@@ -50,11 +58,11 @@
 		</data>
 		<key>Headers/JTProximitySDK.h</key>
 		<data>
-		RBmSoZLAryW02e07HoIZgSubebA=
+		Uy3U1ffDA/K30YtKYp1DQGtNNEs=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		LxjaQMKDdo42O1uQe0ND2qLiZ9s=
+		Ng68FtHR5E9YosqleYuvrDL1jOs=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -138,7 +146,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GVfFMUG4ZoUqZOX3TO7vwft1XN6esHIv1OnQoMZayaI=
+			W5RmQtU4jJdZn5FQirNcaXxNwoLaRtjFfv35OWbPt9Q=
+			</data>
+		</dict>
+		<key>Headers/JTContentExtensions.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			uSTNfAA6vysTksowfCxIYK1fws2uTJNzB+nJaKfWwog=
+			</data>
+		</dict>
+		<key>Headers/JTNotificationGalleryView.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			HvADBF2zor2Rjewwy3uoNjDzuO666u9dmcmLiFlhBPk=
 			</data>
 		</dict>
 		<key>Headers/JTPLogger.h</key>
@@ -166,7 +188,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			EJMZWraPe+99H9BWSwkOepX9D1lttkODajTOgEJr1+Q=
+			2MBcdmQ1qb0Dekzr/Hvgo06+n8HZIPVJFXJvnYUKpNo=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

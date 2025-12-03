@@ -3,7 +3,7 @@
 //  JTProximitySDK
 //
 //  Created by Marco Fraccaroli on 09/25/2017.
-//  Copyright (c) 2024 Jointag S.r.l. All rights reserved.
+//  Copyright (c) 2020 Jointag S.r.l. All rights reserved.
 //
 
 #import "JTAppDelegate.h"
@@ -18,6 +18,8 @@
 @implementation JTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Enable gallery notifications support
+    [JTProximitySDK.sharedInstance setContentExtensionCategories:JTContentExtensionCategoryGallery];
     [JTProximitySDK.sharedInstance setLogLevel:JTPLogLevelVerbose];
     [JTProximitySDK.sharedInstance setCustomDelegate:self];
     [JTProximitySDK.sharedInstance setExternalUserId:@"some-external-id"];

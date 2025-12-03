@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,7 +19,22 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A91ACF2324EA7EA7004A606A /* JTProximitySDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D19E8024EA7D290054B25E /* JTProximitySDK.xcframework */; };
 		A91ACF2424EA7EA7004A606A /* JTProximitySDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A9D19E8024EA7D290054B25E /* JTProximitySDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D999E2E92E7D8E03000FDFDD /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D999E2E82E7D8E03000FDFDD /* UserNotifications.framework */; };
+		D999E2EB2E7D8E03000FDFDD /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D999E2EA2E7D8E03000FDFDD /* UserNotificationsUI.framework */; };
+		D999E2F52E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D999E2E72E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D999E2FB2E7D8E6F000FDFDD /* JTProximitySDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D19E8024EA7D290054B25E /* JTProximitySDK.xcframework */; };
+		D999E2FC2E7D8E6F000FDFDD /* JTProximitySDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A9D19E8024EA7D290054B25E /* JTProximitySDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D999E2F32E7D8E03000FDFDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6003F582195388D10070C39A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D999E2E62E7D8E03000FDFDD;
+			remoteInfo = JTProximitySDK_Example_GalleryExtension;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A91ACF2524EA7EA7004A606A /* Embed Frameworks */ = {
@@ -29,6 +44,28 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A91ACF2424EA7EA7004A606A /* JTProximitySDK.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D999E2F62E7D8E03000FDFDD /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D999E2F52E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D999E2FD2E7D8E6F000FDFDD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D999E2FC2E7D8E6F000FDFDD /* JTProximitySDK.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,7 +93,24 @@
 		A9D1CE391F8E729F00D2FE14 /* JTProximitySDK_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JTProximitySDK_Example.entitlements; sourceTree = "<group>"; };
 		BA68D94D3ECDB61F9AF6FA64 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D928605FFA49F51500A0A14D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		D999E2E72E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = JTProximitySDK_Example_GalleryExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D999E2E82E7D8E03000FDFDD /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		D999E2EA2E7D8E03000FDFDD /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D999E2F92E7D8E03000FDFDD /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D999E2E62E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D999E2EC2E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D999E2F92E7D8E03000FDFDD /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = JTProximitySDK_Example_GalleryExtension; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6003F587195388D20070C39A /* Frameworks */ = {
@@ -70,6 +124,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D999E2E42E7D8E03000FDFDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D999E2EB2E7D8E03000FDFDD /* UserNotificationsUI.framework in Frameworks */,
+				D999E2E92E7D8E03000FDFDD /* UserNotifications.framework in Frameworks */,
+				D999E2FB2E7D8E6F000FDFDD /* JTProximitySDK.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,7 +142,8 @@
 			children = (
 				A9D1CE391F8E729F00D2FE14 /* JTProximitySDK_Example.entitlements */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
-				6003F593195388D20070C39A /* Example for JTProximitySDK */,
+				6003F593195388D20070C39A /* JTProximitySDK */,
+				D999E2EC2E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
 			);
@@ -88,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				6003F58A195388D20070C39A /* JTProximitySDK_Example.app */,
+				D999E2E72E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,11 +165,13 @@
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
+				D999E2E82E7D8E03000FDFDD /* UserNotifications.framework */,
+				D999E2EA2E7D8E03000FDFDD /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6003F593195388D20070C39A /* Example for JTProximitySDK */ = {
+		6003F593195388D20070C39A /* JTProximitySDK */ = {
 			isa = PBXGroup;
 			children = (
 				6003F59C195388D20070C39A /* JTAppDelegate.h */,
@@ -115,7 +183,6 @@
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
-			name = "Example for JTProximitySDK";
 			path = JTProximitySDK;
 			sourceTree = "<group>";
 		};
@@ -151,15 +218,40 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				A91ACF2524EA7EA7004A606A /* Embed Frameworks */,
+				D999E2F62E7D8E03000FDFDD /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D999E2F42E7D8E03000FDFDD /* PBXTargetDependency */,
 			);
 			name = JTProximitySDK_Example;
 			productName = JTProximitySDK;
 			productReference = 6003F58A195388D20070C39A /* JTProximitySDK_Example.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D999E2E62E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D999E2FA2E7D8E03000FDFDD /* Build configuration list for PBXNativeTarget "JTProximitySDK_Example_GalleryExtension" */;
+			buildPhases = (
+				D999E2E32E7D8E03000FDFDD /* Sources */,
+				D999E2E42E7D8E03000FDFDD /* Frameworks */,
+				D999E2E52E7D8E03000FDFDD /* Resources */,
+				D999E2FD2E7D8E6F000FDFDD /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D999E2EC2E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension */,
+			);
+			name = JTProximitySDK_Example_GalleryExtension;
+			packageProductDependencies = (
+			);
+			productName = JTProximitySDK_Example_GalleryExtension;
+			productReference = D999E2E72E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -168,6 +260,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = JT;
+				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Marco Fraccaroli";
 				TargetAttributes = {
@@ -177,6 +270,9 @@
 								enabled = 0;
 							};
 						};
+					};
+					D999E2E62E7D8E03000FDFDD = {
+						CreatedOnToolsVersion = 26.0;
 					};
 				};
 			};
@@ -194,6 +290,7 @@
 			projectRoot = "";
 			targets = (
 				6003F589195388D20070C39A /* JTProximitySDK_Example */,
+				D999E2E62E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -210,6 +307,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D999E2E52E7D8E03000FDFDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -223,7 +327,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D999E2E32E7D8E03000FDFDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D999E2F42E7D8E03000FDFDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D999E2E62E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension */;
+			targetProxy = D999E2F32E7D8E03000FDFDD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6003F596195388D20070C39A /* InfoPlist.strings */ = {
@@ -350,17 +469,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8S4255EPQZ;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = ../Library;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "JTProximitySDK/JTProximitySDK-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jointag.proximity.sample.GithubSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -369,18 +493,111 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8S4255EPQZ;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = ../Library;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "JTProximitySDK/JTProximitySDK-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jointag.proximity.sample.GithubSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D999E2F72E7D8E03000FDFDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JTProximitySDK_Example_GalleryExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = JTProximitySDK_Example_GalleryExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Marco Fraccaroli. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jointag.proximity.sample.GithubSample.JTProximitySDK-Example-GalleryExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D999E2F82E7D8E03000FDFDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JTProximitySDK_Example_GalleryExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = JTProximitySDK_Example_GalleryExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Marco Fraccaroli. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jointag.proximity.sample.GithubSample.JTProximitySDK-Example-GalleryExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -401,6 +618,15 @@
 			buildConfigurations = (
 				6003F5C0195388D20070C39A /* Debug */,
 				6003F5C1195388D20070C39A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D999E2FA2E7D8E03000FDFDD /* Build configuration list for PBXNativeTarget "JTProximitySDK_Example_GalleryExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D999E2F72E7D8E03000FDFDD /* Debug */,
+				D999E2F82E7D8E03000FDFDD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -2,31 +2,80 @@
 
 ## Table of Contents
 
-1. [Installation](#user-content-installation)
-    1. [Installation using CocoaPods](#installation-using-cocoapods)
-    2. [Manual Installation](#manual-installation)
-2. [Permissions and Settings](#permissions-and-settings)
-    1. [Important Notice](#important-notice)
-    2. [User Tracking Permission](#user-tracking-permission)
-    3. [Notifications Permission](#notifications-permission)
-    4. [Location Permission](#location-permission)
-3. [Setup](#user-content-setup)
-    1. [Initializating the SDK](#user-content-initializating-the-sdk)
-    2. [iOS 13 Scenes](#ios-13-scenes)
+1. [📋 Overview](#user-content--overview)
+2. [📦 Installation](#user-content--installation)
+    1. [Installation using CocoaPods](#user-content-installation-using-cocoapods)
+    2. [Manual Installation](#user-content-manual-installation)
+3. [🔐 Permissions and Settings](#user-content--permissions-and-settings)
+    1. [User Tracking Permission](#user-content-user-tracking-permission)
+    2. [Notifications Permission](#user-content-notifications-permission)
+    3. [Location Permission](#user-content-location-permission)
+4. [🚀 Setup](#user-content--setup)
+    1. [Initializing the SDK](#user-content-initializing-the-sdk)
+    2. [iOS 13 Scenes](#user-content-ios-13-scenes)
     3. [Handling Notifications](#user-content-handling-notifications)
-4. [Advanced Configurations](#advanced-configurations)
+5. [🔧 Advanced Configurations](#user-content--advanced-configurations)
     1. [Tracking User Identifiers](#user-content-tracking-user-identifiers)
     2. [Data Tags](#user-content-data-tags)
-    2. [Programmatically Disable Advertising](#programmatically-disable-advertising)
-    3. [Receive custom events](#user-content-receive-custom-events)
-4. [User Consent and GDPR](#user-consent-and-gdpr)
-    1. [Enabling the Consent Flow support](#user-consent-enabling-the-consent-flow-support)
-    2. [Using Consent Management Platform](#user-consent-using-consent-management-platform)
-    3. [Implementing a Custom Consent Flow](#user-consent-implementing-a-custom-consent-flow)
+    3. [Programmatically Disable Advertising](#user-content-programmatically-disable-advertising)
+    4. [Receive custom events](#user-content-receive-custom-events)
+    5. [Notification Content Extensions](#user-content-notification-content-extensions)
+6. [👤 User Consent and GDPR](#user-content--user-consent-and-gdpr)
+    1. [Using a Consent Management Platform (CMP)](#user-content-using-a-consent-management-platform-cmp)
+    2. [Manual Consent Management](#user-content-manual-consent-management)
 
-## Installation
+---
+
+## 📋 Overview
+
+The Jointag Proximity SDK enables iOS applications to leverage advanced
+proximity marketing capabilities with minimal integration effort.
+
+Once integrated, the SDK operates mostly in a “start and forget” fashion: after
+initialization and permission requests, it autonomously manages its lifecycle,
+collecting movement and location data, and delivering targeted notifications to
+the user.
+
+What the SDK does:
+
+- **User behavior analysis**:
+  
+  Tracks user movements using geofences and
+Bluetooth beacons, allowing advanced segmentation and insights.
+- **Proximity marketing delivery**:
+
+  Displays location-aware notifications to the user, enabling personalized campaigns based on physical context.
+
+What the developer needs to do:
+
+- Add the SDK to the project (via CocoaPods or manual installation).
+- Initialize the SDK with the provided API key and secret.
+- Request the necessary user permissions (tracking, location, notifications).
+
+Everything else—such as monitoring, proximity event detection, and notification
+delivery—is handled automatically by the SDK.
+
+```mermaid
+flowchart TD
+
+A[App Launch] --> B["Initialize SDK <br> with API Key & Secret"]
+B --> C["Request Permissions <br>(Tracking, Location, Notifications)"]
+C --> D["SDK Active ✅"]
+D --> E["SDK Manages Proximity Events <br> & Notifications Automatically"]
+E --> F["Optional: App uses <br> ExternalUserId / Tags / Consent"]
+```
+
+---
+
+## 📦 Installation
+
+The Jointag Proximity SDK is available as a compiled **xcframework** that can be
+integrated into your project either via [CocoaPods](https://cocoapods.org) or
+manually.
 
 ### Installation using CocoaPods
+
+To install the Jointag Proximity SDK using CocoaPods, follow these steps:
 
 1.  Install or update `CocoaPods` to version **1.9.0 or later**, which is
     essential for proper support of the new *xcframework* format.
@@ -62,12 +111,14 @@ project (remember to check *"Copy items if needed"*).
 Libraries, and Embedded Content** section of the **General** tab of your project
 and that the *embed* mode is **Embed & Sign**
 
-## Permissions and Settings
+---
+
+## 🔐 Permissions and Settings
 
 The following section describes the permissions required by the SDK, along with
 the necessary keys that must be added to the application Info.plist file.
 
-> ⚠️ Attention : Starting with SDK version **1.12.0**, all the required
+> ⚠️ **Attention** : Starting with SDK version **1.12.0**, all the required
 > permissions are no longer automatically requested when starting the SDK, but
 > must be requested from the user by the application itself. To simplify this
 > process, the SDK exposes helper methods to request them (such methods are
@@ -77,7 +128,7 @@ the necessary keys that must be added to the application Info.plist file.
 
 ### User Tracking Permission
 
-As describe [here](user-tracking-usage-description), user tracking
+As described [here](user-tracking-usage-description), user tracking
 permission requires the following key to be added to the application
 **Info.plist** file:
 
@@ -147,10 +198,11 @@ A helper method is provided to easily request location authorization:
 Proximity.shared.requestLocationAuthorization()
 ```
 
+---
 
-## Setup
+## 🚀 Setup
 
-### Initializating the SDK
+### Initializing the SDK
 
 Place the following code inside the `UIApplicationDelegate` of your application:
 
@@ -172,6 +224,16 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     return true
 }
 ```
+
+> ℹ️ **Class naming note**: The SDK exposes its main singleton instance with two
+> different names depending on the language:
+>
+> - **Swift** → `Proximity.shared` (shortened naming to avoid conflicts with the
+> framework name)
+> - **Objective-C** → `JTProximitySDK.sharedInstance`
+>
+> Both variants provide the same APIs and lifecycle. Please make sure to use the
+> correct one depending on your project’s language.
 
 ---
 
@@ -250,7 +312,7 @@ func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive respo
 }
 ```
 
-> ⚠️ Attention: Many third-party push notification libraries adopt the practice
+> ⚠️ **Attention**: Many third-party push notification libraries adopt the practice
 > of replacing the default `UNUserNotificationCenterDelegate` entirely, or to
 > _swizzle_ the methods of the current delegate. In this case you will notice
 > that the normal delegate methods are not called, and the **Jointag Proximity
@@ -262,7 +324,9 @@ func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive respo
 > If this is your case, **please read carefully the third-party library
 > documentation** to know how to implement the above methods via their library.
 
-## Advanced Configurations
+---
+
+## 🔧 Advanced Configurations
 
 ### Tracking User Identifiers
 
@@ -293,9 +357,9 @@ ProximitySDK.shared.installationId()
 
 
 The `externalUserId` is an identifier you set to pair a unique user identifier
-of your choice with our` installationId`. Tipically this identifier must be set
+of your choice with our` installationId`. Typically this identifier must be set
 after a user has signed in to your application, and must be removed after the
-same user decides to sign out of you application.
+same user decides to sign out of your application.
 
 You can choose any string of 255 characters or less as externalUserId.
 
@@ -338,7 +402,7 @@ that can be sent to our server through the SDK methods and that allow you a more
 effective campaigns targeting, or to receive personalized analysis based on the
 characteristics of your users.
 
-Tags can be set or unset (with a `null` value) using the following methods:
+Tags can be set or unset (with a `nil` value) using the following methods:
 
 #### sendTag
 
@@ -374,7 +438,7 @@ ProximitySDK.shared.sendTag(true, for: "key3");
 // -> { "key1" : "value", "key2" : 1, "key3" : true }
 ProximitySDK.shared.sendTag(false, for: "key3");
 // -> { "key1" : "value", "key2" : 1, "key3" : false }
-ProximitySDK.shared.sendTag(null, for: "key2");
+ProximitySDK.shared.sendTag(nil, for: "key2");
 // -> { "key1" : "value", "key3" : false }
 ```
 
@@ -462,46 +526,217 @@ When the application user interacts with a custom-action notification, the
 `jtProximityDidReceiveCustomAction:` method is invoked by passing a
 `customAction` NSString object.
 
-## User Consent and GDPR
+---
 
-As a publisher, you should implement a user consent flow either **manually** or
-using a **Consent Management Platform** (CMP) and request for vendor and purpose
-consents as outlined in IAB Europe’s Mobile In-App CMP API v2.0: Transparency
-& Consent Framework.
+### Notification Content Extensions
+
+Starting from SDK version 1.16.0, the Proximity SDK supports rich notification content through custom notification content extensions. Currently supported categories include:
+
+- **Gallery Notifications**: Display a gallery of images within the notification.
+
+#### Setting up Gallery Notifications Extension
+
+To enable gallery notifications in your application, follow these steps:
+
+1. **Create a Notification Content Extension**
+
+    In Xcode, add a new target to your project:
+   - File → New → Target → Notification Content Extension
+   - Name it appropriately (e.g., "MyAppGalleryNotificationExtension")
+
+2. **Add the SDK to the Extension Target**
+
+    The notification content extension must have access to the JTProximitySDK
+    framework to use the gallery components.
+
+    **If using CocoaPods:**
+
+    Update your Podfile to include the SDK for the extension target:
+
+    ```ruby
+    target 'MyApp' do
+        use_frameworks!
+        pod 'JTProximitySDK'
+    end
+
+    target 'MyAppGalleryNotificationExtension' do
+        use_frameworks!
+        pod 'JTProximitySDK'
+    end
+    ```
+
+    Then run `pod install` in your terminal.
+
+    **If using Manual Installation:**
+
+    1. Select your project in the Xcode navigator
+    2. Select the notification extension target
+    3. Go to the **General** tab
+    4. In the **Frameworks, Libraries, and Embedded Content** section, click the "+" button
+    5. Add **JTProximitySDK.xcframework** and set it to **Embed & Sign**
+
+3. **Configure the Extension Info.plist**
+
+   Edit and update the `Info.plist` of your newly created notification content
+   extension with the following:
+
+   ```xml
+   <key>NSExtension</key>
+   <dict>
+       <key>NSExtensionAttributes</key>
+       <dict>
+           <key>UNNotificationExtensionCategory</key>
+           <string>com.jointag.notification.category.gallery</string>
+           <key>UNNotificationExtensionInitialContentSizeRatio</key>
+           <real>1</real>
+		   <key>UNNotificationExtensionUserInteractionEnabled</key>
+		   <true/>
+       </dict>
+       <key>NSExtensionPrincipalClass</key>
+       <string>$(PRODUCT_MODULE_NAME).NotificationViewController</string>
+       <key>NSExtensionPointIdentifier</key>
+       <string>com.apple.usernotifications.content-extension</string>
+   </dict>
+   ```
+
+   **Important Details:**
+   - `UNNotificationExtensionCategory`: Must be exactly `com.jointag.notification.category.gallery`
+   - `UNNotificationExtensionInitialContentSizeRatio`: Must be set to `1.0`
+   - `UNNotificationExtensionUserInteractionEnabled`: Must be set to `true` to enable user interactions
+   - `NSExtensionPrincipalClass`: Use `$(PRODUCT_MODULE_NAME).NotificationViewController` to automatically reference your view controller class
+
+   > **Note**: When Xcode creates the notification content extension, it automatically
+   generates a storyboard-based setup. Since the UI is created programmatically
+   by the SDK, you can safely delete the `MainInterface.storyboard` file from
+   the extension target.
+
+4. **Implement the Extension View Controller**
+
+   Replace the content of your extension's view controller with the following implementation:
+
+   **Swift**
+
+   ```swift
+   import UIKit
+   import JTProximitySDK
+   import UserNotifications
+   import UserNotificationsUI
+
+   class NotificationViewController: UIViewController, UNNotificationContentExtension {
+       private let galleryView = JTNotificationGalleryView()
+
+       override func viewDidLoad() {
+           super.viewDidLoad()
+           self.galleryView.translatesAutoresizingMaskIntoConstraints = false
+           self.view.addSubview(self.galleryView)
+           NSLayoutConstraint.activate([
+               self.galleryView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+               self.galleryView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+               self.galleryView.topAnchor.constraint(equalTo: self.view.topAnchor),
+               self.galleryView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+           ])
+       }
+
+       func didReceive(_ notification: UNNotification) {
+           self.galleryView.configure(with: notification, in: self.extensionContext)
+       }
+   }
+   ```
+
+5. **Enable Content Extension Support in the Main App**
+
+   After implementing the content extension, you must notify the SDK about the supported categories by setting the `contentExtensionCategories` property before initializing the SDK:
+
+   **Objective-C**
+
+   ```objc
+   - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+       // Enable gallery notifications support
+       [JTProximitySDK.sharedInstance setContentExtensionCategories:JTContentExtensionCategoryGallery];
+       
+       // Initialize the SDK
+       [JTProximitySDK.sharedInstance initWithLaunchOptions:launchOptions apiKey:@"YOUR_API_KEY" apiSecret:@"YOUR_API_SECRET"];
+       
+       // Other application logics
+       return YES;
+   }
+   ```
+
+   **Swift**
+
+   ```swift
+   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+       // Enable gallery notifications support
+       ProximitySDK.shared.contentExtensionCategories = .gallery
+       
+       // Initialize the SDK
+       ProximitySDK.shared.initWithLaunchOptions(launchOptions, apiKey: "YOUR_API_KEY", apiSecret: "YOUR_API_SECRET")
+       
+       // Other application logics
+       return true
+   }
+   ```
+
+   You can also combine multiple extension categories using bitwise OR operations:
+
+   **Objective-C**
+
+   ```objc
+   // Enable multiple categories (when available)
+   [JTProximitySDK.sharedInstance setContentExtensionCategories:JTContentExtensionCategoryGallery | JTContentExtensionCategoryOther];
+   ```
+
+   **Swift**
+
+   ```swift
+   // Enable multiple categories (when available)
+   ProximitySDK.shared.contentExtensionCategories = [.gallery, .other]
+   ```
+
+    > ⚠️ **Important**: The `contentExtensionCategories` property must be set
+    > **before** calling the SDK initialization method
+    > `initWithLaunchOptions:apiKey:apiSecret:` to ensure proper functionality.
 
 ---
 
-### Enabling the Consent Flow support
+## 👤 User Consent and GDPR
 
-To ensure that the SDK support the handling of user-consent preferences when a
-IAB-compatible CMP library is present, you must enable the feature through the
-`ProximitySDK.setCmpEnabled:` method, which is `false` by default.
+The SDK supports two approaches for handling user consent:
 
-> ⚠️ **Attention**: This method must be called before the library
-> `initWithLaunchOptions:apiKey:apiSecret:` method to guarantee an error-free
-> process.
+1. **Automatic CMP Integration**: Use with IAB-compatible Consent Management
+   Platforms
+2. **Manual Consent Management**: Implement your own consent flow
 
-#### Using Consent Management Platform
+### Using a Consent Management Platform (CMP)
+
+**Enabling the Consent Flow support**
+
+If you're using an IAB-compatible CMP:
+
+```objc
+// Enable CMP support BEFORE initialization
+[JTProximitySDK.sharedInstance setCmpEnabled:YES];
+[JTProximitySDK.sharedInstance initWithLaunchOptions:launchOptions apiKey:@"YOUR_API_KEY" apiSecret:@"YOUR_API_SECRET"];
+```
+
+**Requirements**
 
 When configuring a third-party CMP to use with the Jointag Proximity SDK, the
 following requirements must be met:
 
+- The CMP must be IAB Europe v2.0 compatible.
 - In order to enable the delivery of advertising, a `custom publisher purpose`
     **must be** configured in the CMP, and it **must be** the first custom
     purpose.
 
-#### Implementing a Custom Consent Flow
+### Manual Consent Management
 
-If you need to handle the user consent flow manually without the use of a
-IAB-compatible CMP library, or if the CMP you are using do not allow the
-customization of **custom publisher purpose**, it is possibile to do so by
-implementing an in-app consent screen and interacting with the SDK using the
-following methods:
+If implementing your own consent flow:
 
 **Objective-C**
 
 ```objc
-// Retrieve or update the manual user profiling consent
+// Set individual consent types
 [JTProximitySDK.sharedInstance getManualConsentForType:JTPManualConsentProfiling];
 [JTProximitySDK.sharedInstance setManualConsent:YES forType:JTPManualConsentProfiling];
 
@@ -537,6 +772,12 @@ ProximitySDK.shared.setManualConsent(true, for: .advertising);
 ProximitySDK.shared.getManualConsent(for: .advancedTracking);
 ProximitySDK.shared.setManualConsent(true, for: .advancedTracking);
 ```
+
+**Available Consent Types:**
+- `JTPManualConsentProfiling`: User profiling for targeting
+- `JTPManualConsentMonitoring`: Location and behavior monitoring
+- `JTPManualConsentAdvertising`: Advertising delivery
+- `JTPManualConsentAdvancedTracking`: Advanced analytics tracking
 
 ---
 
