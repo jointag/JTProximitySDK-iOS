@@ -13,6 +13,7 @@
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* JTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* JTAppDelegate.m */; };
+		D91E5CE30000000000000003 /* JTSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D91E5CE20000000000000002 /* JTSceneDelegate.m */; };
 		6003F5A7195388D20070C39A /* JTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* JTViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
@@ -83,6 +84,8 @@
 		6003F59B195388D20070C39A /* JTProximitySDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JTProximitySDK-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* JTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* JTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTAppDelegate.m; sourceTree = "<group>"; };
+		D91E5CE10000000000000001 /* JTSceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTSceneDelegate.h; sourceTree = "<group>"; };
+		D91E5CE20000000000000002 /* JTSceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTSceneDelegate.m; sourceTree = "<group>"; };
 		6003F5A5195388D20070C39A /* JTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTViewController.h; sourceTree = "<group>"; };
 		6003F5A6195388D20070C39A /* JTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 			children = (
 				6003F59C195388D20070C39A /* JTAppDelegate.h */,
 				6003F59D195388D20070C39A /* JTAppDelegate.m */,
+				D91E5CE10000000000000001 /* JTSceneDelegate.h */,
+				D91E5CE20000000000000002 /* JTSceneDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* JTViewController.h */,
 				6003F5A6195388D20070C39A /* JTViewController.m */,
@@ -322,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* JTAppDelegate.m in Sources */,
+				D91E5CE30000000000000003 /* JTSceneDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* JTViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
