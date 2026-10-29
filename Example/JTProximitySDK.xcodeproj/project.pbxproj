@@ -411,7 +411,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -458,7 +458,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -533,7 +533,7 @@
 				INFOPLIST_FILE = JTProximitySDK_Example_GalleryExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = JTProximitySDK_Example_GalleryExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Marco Fraccaroli. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -578,7 +578,7 @@
 				INFOPLIST_FILE = JTProximitySDK_Example_GalleryExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = JTProximitySDK_Example_GalleryExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Marco Fraccaroli. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
