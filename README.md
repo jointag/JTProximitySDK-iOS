@@ -138,7 +138,7 @@ the necessary keys that must be added to the application Info.plist file.
 
 ### User Tracking Permission
 
-As described [here](user-tracking-usage-description), user tracking
+As described [here][user-tracking-usage-description], user tracking
 permission requires the following key to be added to the application
 **Info.plist** file:
 
@@ -202,7 +202,7 @@ Proximity.shared.requestNotificationAuthorization()
 
 ### Location Permission
 
-As described [here](location-usage-description), user location permission
+As described [here][location-usage-description], user location permission
 requires the following keys to be added to the application **Info.plist**
 file:
 
