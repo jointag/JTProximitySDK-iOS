@@ -40,17 +40,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (@available(iOS 14, *)) {
-        [self.locationPermissionButton setEnabled:self.locationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined];
-        [self.locationPermissionView toggle:self.locationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedAlways];
-        [self.trackingPermissionButton setEnabled:ATTrackingManager.trackingAuthorizationStatus == ATTrackingManagerAuthorizationStatusNotDetermined];
-        [self.trackingPermissionView toggle:ATTrackingManager.trackingAuthorizationStatus == ATTrackingManagerAuthorizationStatusAuthorized];
-    } else {
-        [self.locationPermissionButton setEnabled:CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined];
-        [self.locationPermissionView toggle:CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedAlways];
-        [self.trackingPermissionButton setEnabled:NO];
-        [self.trackingPermissionView toggle:YES];
-    }
+    [self.locationPermissionButton setEnabled:self.locationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined];
+    [self.locationPermissionView toggle:self.locationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedAlways];
+    [self.trackingPermissionButton setEnabled:ATTrackingManager.trackingAuthorizationStatus == ATTrackingManagerAuthorizationStatusNotDetermined];
+    [self.trackingPermissionView toggle:ATTrackingManager.trackingAuthorizationStatus == ATTrackingManagerAuthorizationStatusAuthorized];
     [[UNUserNotificationCenter currentNotificationCenter] getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.notificationPermissionButton setEnabled:(settings.authorizationStatus == UNAuthorizationStatusNotDetermined)];
@@ -60,14 +53,12 @@
 }
 
 - (IBAction)requestTrackingPermissions:(id)sender {
-    if (@available(iOS 14, *)) {
-        [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.trackingPermissionButton setEnabled:status == ATTrackingManagerAuthorizationStatusNotDetermined];
-                [self.trackingPermissionView toggle:status == ATTrackingManagerAuthorizationStatusAuthorized];
-            });
-        }];
-    }
+    [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.trackingPermissionButton setEnabled:status == ATTrackingManagerAuthorizationStatusNotDetermined];
+            [self.trackingPermissionView toggle:status == ATTrackingManagerAuthorizationStatusAuthorized];
+        });
+    }];
 }
 
 - (IBAction)requestNotificationPermissions:(id)sender {
@@ -86,13 +77,9 @@
 #pragma mark - CLLocationManagerDelegate
 
 
-- (void)locationManagerDidChangeAuthorization:(CLLocationManager *)manager __IOS_AVAILABLE(14.0) {
-    [self locationManager:manager didChangeAuthorizationStatus:manager.authorizationStatus];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    [self.locationPermissionButton setEnabled:status == kCLAuthorizationStatusNotDetermined];
-    [self.locationPermissionView toggle:status == kCLAuthorizationStatusAuthorizedAlways];
+- (void)locationManagerDidChangeAuthorization:(CLLocationManager *)manager {
+    [self.locationPermissionButton setEnabled:manager.authorizationStatus == kCLAuthorizationStatusNotDetermined];
+    [self.locationPermissionView toggle:manager.authorizationStatus == kCLAuthorizationStatusAuthorizedAlways];
 }
 
 @end
