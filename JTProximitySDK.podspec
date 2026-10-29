@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "JTProximitySDK"
-  s.version      = "1.18.0"
+  s.version      = "1.19.0"
   s.summary      = "iOS library for Jointag Proximity"
   s.homepage     = "https://www.jointag.com/"
   s.author       = "Next14 S.p.A."
@@ -9,9 +9,9 @@ Pod::Spec.new do |s|
     :git => "https://github.com/jointag/JTProximitySDK-iOS.git",
     :tag => "#{s.version}"
   }
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '15.0'
   s.vendored_frameworks = 'Library/JTProximitySDK.xcframework'
-  s.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'CoreLocation', 'CoreTelephony', 'AdSupport', 'WebKit'
+  s.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'CoreLocation', 'AdSupport', 'WebKit'
   s.license    = {
     :type => "Copyright",
     :text => <<-LICENSE

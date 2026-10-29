@@ -12,7 +12,7 @@
     3. [Location Permission](#user-content-location-permission)
 4. [🚀 Setup](#user-content--setup)
     1. [Initializing the SDK](#user-content-initializing-the-sdk)
-    2. [iOS 13 Scenes](#user-content-ios-13-scenes)
+    2. [UIScene Life Cycle](#user-content-uiscene-life-cycle)
     3. [Handling Notifications](#user-content-handling-notifications)
 5. [🔧 Advanced Configurations](#user-content--advanced-configurations)
     1. [Tracking User Identifiers](#user-content-tracking-user-identifiers)
@@ -72,6 +72,14 @@ E --> F["Optional: App uses <br> ExternalUserId / Tags / Consent"]
 The Jointag Proximity SDK is available as a compiled **xcframework** that can be
 integrated into your project either via [CocoaPods](https://cocoapods.org) or
 manually.
+
+**Requirements**
+
+- **iOS 15.0** or later. Version 1.18.0 and earlier supported iOS 12; 1.19.0
+  raises the minimum because Xcode 27 does not build for anything lower.
+- Your application must adopt the UIKit scene-based life cycle if it is built
+  against the iOS 27 SDK — see
+  [UIScene Life Cycle](#user-content-uiscene-life-cycle).
 
 ### Installation using CocoaPods
 
@@ -237,31 +245,48 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 ---
 
-### iOS 13 Scenes
+### UIScene Life Cycle
 
-If your application make use of iOS 13 scenes, an additional requirement is to
-update the SDK windowSceneDelegate reference with the current active
-UIWindowSceneDelegate.
+An application built against the **iOS 27 SDK must adopt the UIKit scene-based
+life cycle**. UIKit refuses to launch one that does not:
 
-To do this you must add the following code to your current UIWindowSceneDelegate
-`scene:willConnectToSession:options:` :
+```
+Application failed to launch: UIScene life cycle is required for apps built
+with this SDK.
+```
+
+If your application still starts from `UIApplicationDelegate` alone, declare a
+scene manifest in `Info.plist` and a `UIWindowSceneDelegate`. The example
+project in this repository shows the minimum form, in Objective-C.
+
+**No SDK-specific step is required.** Since **1.19.0** the SDK resolves the
+application window through `UIApplication.connectedScenes`, so there is nothing
+to hand to it.
+
+#### windowSceneDelegate is no longer necessary
+
+Earlier versions asked you to declare the active `UIWindowSceneDelegate` to the
+SDK:
 
 **Swift**
 
 ```swift
-import UIKit
-import JTProximitySDK
-
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
-    var window: UIWindow?
-
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        ProximitySDK.shared.windowSceneDelegate = self
-        guard let _ = (scene as? UIWindowScene) else { return }
-    }
+func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    // Needed before 1.19.0. Still honoured, no longer required.
+    ProximitySDK.shared.windowSceneDelegate = self
 }
 ```
+
+The property still exists and is still honoured, so existing integrations keep
+working untouched and the line can be removed at your convenience.
+
+What it worked around: before 1.19.0 the SDK asked the application delegate for
+its window. A scene-based application whose delegate still declares an unused
+`window` property — as the Xcode templates did for years — answers that question
+with `nil`, and the SDK had no window to present on. Tapping a notification
+brought the application to the foreground and nothing else happened. Resolving
+the window through the scenes removes the dependency on what the delegate
+declares.
 
 ---
 
