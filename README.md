@@ -161,23 +161,23 @@ Proximity.shared.requestTrackingAuthorization()
 
 #### Known issue: the prompt is not presented on iOS 27.0 and 27.1 in parts of the EU
 
-> **Fixed in iOS 27.2.** Devices still running iOS 27.0 or 27.1 remain affected.
-
-On iOS 27.0 and 27.1 the system may never present the ATT prompt: the call returns within a few
-milliseconds, the status stays `notDetermined`, and nothing is displayed.
+> ⚠️ **Attention**: on **iOS 27.0 and 27.1**, in **Germany, France, Italy, Poland and Romania**,
+> the system may never present the ATT prompt. The call returns within a few milliseconds, the
+> status stays `notDetermined`, and nothing is displayed. **Fixed in iOS 27.2**, but devices still
+> running 27.0 or 27.1 remain affected.
+>
+> On an affected version **an app cannot tell this state apart from "the user has not been asked
+> yet"**: both report `notDetermined`. Since those two versions stay in the field, do not make your
+> interface depend on the prompt being presented, and always offer an alternative path — a settings
+> screen the user can reach on their own — rather than assuming the authorization flow will
+> complete.
 
 This is not a defect in this SDK nor in the host app, and it affected App Store apps as well. The
 enforcement of the EU rules shipped in iOS 27.0, but the replacement prompt only arrived in iOS 27.2:
 in the countries where the classic ATT alert is no longer permitted the system correctly refused to
-present it and had nothing to show in its place. The affected countries are **Germany, France, Italy,
-Poland and Romania**, and the deciding factor is the region of the signed-in Apple Account, not the
-location of the device. Checked on iOS 27.2 with an Italian Apple Account: the prompt is presented
-again and the authorization can be granted.
-
-**On an affected version an app cannot tell this state apart from "the user has not been asked yet"**:
-both report `notDetermined`. Since the two older versions stay in the field, do not make your interface
-depend on the prompt being presented, and always offer an alternative path — a settings screen the user
-can reach on their own — rather than assuming the authorization flow will complete.
+present it and had nothing to show in its place. The deciding factor is the region of the signed-in
+Apple Account, not the location of the device. Checked on iOS 27.2 with an Italian Apple Account:
+the prompt is presented again and the authorization can be granted.
 
 ##### Consequence on SDK traffic
 
