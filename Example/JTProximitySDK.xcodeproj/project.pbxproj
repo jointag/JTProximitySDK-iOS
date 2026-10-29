@@ -19,6 +19,7 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A91ACF2324EA7EA7004A606A /* JTProximitySDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D19E8024EA7D290054B25E /* JTProximitySDK.xcframework */; };
 		A91ACF2424EA7EA7004A606A /* JTProximitySDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A9D19E8024EA7D290054B25E /* JTProximitySDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D91E5CE30000000000000003 /* JTSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D91E5CE20000000000000002 /* JTSceneDelegate.m */; };
 		D999E2E92E7D8E03000FDFDD /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D999E2E82E7D8E03000FDFDD /* UserNotifications.framework */; };
 		D999E2EB2E7D8E03000FDFDD /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D999E2EA2E7D8E03000FDFDD /* UserNotificationsUI.framework */; };
 		D999E2F52E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D999E2E72E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -92,6 +93,8 @@
 		A9D19E8024EA7D290054B25E /* JTProximitySDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = JTProximitySDK.xcframework; path = ../Library/JTProximitySDK.xcframework; sourceTree = "<group>"; };
 		A9D1CE391F8E729F00D2FE14 /* JTProximitySDK_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JTProximitySDK_Example.entitlements; sourceTree = "<group>"; };
 		BA68D94D3ECDB61F9AF6FA64 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		D91E5CE10000000000000001 /* JTSceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTSceneDelegate.h; sourceTree = "<group>"; };
+		D91E5CE20000000000000002 /* JTSceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTSceneDelegate.m; sourceTree = "<group>"; };
 		D928605FFA49F51500A0A14D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D999E2E72E7D8E03000FDFDD /* JTProximitySDK_Example_GalleryExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = JTProximitySDK_Example_GalleryExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D999E2E82E7D8E03000FDFDD /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
@@ -176,6 +179,8 @@
 			children = (
 				6003F59C195388D20070C39A /* JTAppDelegate.h */,
 				6003F59D195388D20070C39A /* JTAppDelegate.m */,
+				D91E5CE10000000000000001 /* JTSceneDelegate.h */,
+				D91E5CE20000000000000002 /* JTSceneDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* JTViewController.h */,
 				6003F5A6195388D20070C39A /* JTViewController.m */,
@@ -259,9 +264,10 @@
 		6003F582195388D10070C39A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = JT;
 				LastSwiftUpdateCheck = 2600;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 2710;
 				ORGANIZATIONNAME = "Marco Fraccaroli";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
@@ -322,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* JTAppDelegate.m in Sources */,
+				D91E5CE30000000000000003 /* JTSceneDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* JTViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
@@ -411,9 +418,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -458,8 +466,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -471,11 +481,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = ../Library;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "JTProximitySDK/JTProximitySDK-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "${PRODUCT_NAME}";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application requires your location for provide context-aware informations";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application requires your location for provide context-aware informations";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This application requires app tracking for advertising attribution";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arm64;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -495,11 +515,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = ../Library;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "JTProximitySDK/JTProximitySDK-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "${PRODUCT_NAME}";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application requires your location for provide context-aware informations";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application requires your location for provide context-aware informations";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This application requires app tracking for advertising attribution";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arm64;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -533,7 +563,7 @@
 				INFOPLIST_FILE = JTProximitySDK_Example_GalleryExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = JTProximitySDK_Example_GalleryExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Marco Fraccaroli. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -578,7 +608,7 @@
 				INFOPLIST_FILE = JTProximitySDK_Example_GalleryExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = JTProximitySDK_Example_GalleryExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Marco Fraccaroli. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

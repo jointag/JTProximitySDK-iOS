@@ -69,10 +69,13 @@ NS_SWIFT_NAME(ProximitySDK)
 @property (weak, nonatomic, nullable) id<JTProximityCustomDelegate> customDelegate;
 
 /**
- UISceneDelegate for iOS 13
- */
+ The scene delegate owning the window the SDK should present on.
 
-@property (weak, nonatomic, nullable) id<UIWindowSceneDelegate> windowSceneDelegate API_AVAILABLE(ios(13.0));
+ @deprecated No longer needed. The SDK resolves the window through the connected
+ scenes by itself. Set this only to override that choice, for instance in an
+ application with several window scenes.
+ */
+@property (weak, nonatomic, nullable) id<UIWindowSceneDelegate> windowSceneDelegate __deprecated_msg("No longer needed: the SDK resolves the window through the connected scenes.");
 
 /**
  Singleton instance for JTProximitySDK

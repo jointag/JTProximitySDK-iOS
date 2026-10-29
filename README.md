@@ -12,7 +12,7 @@
     3. [Location Permission](#user-content-location-permission)
 4. [🚀 Setup](#user-content--setup)
     1. [Initializing the SDK](#user-content-initializing-the-sdk)
-    2. [iOS 13 Scenes](#user-content-ios-13-scenes)
+    2. [UIScene Life Cycle](#user-content-uiscene-life-cycle)
     3. [Handling Notifications](#user-content-handling-notifications)
 5. [🔧 Advanced Configurations](#user-content--advanced-configurations)
     1. [Tracking User Identifiers](#user-content-tracking-user-identifiers)
@@ -23,6 +23,8 @@
 6. [👤 User Consent and GDPR](#user-content--user-consent-and-gdpr)
     1. [Using a Consent Management Platform (CMP)](#user-content-using-a-consent-management-platform-cmp)
     2. [Manual Consent Management](#user-content-manual-consent-management)
+7. [🐞 Known Issues](#user-content--known-issues)
+    1. [The ATT prompt is not presented on iOS 27.0 and 27.1 in parts of the EU](#user-content-the-att-prompt-is-not-presented-on-ios-270-and-271-in-parts-of-the-eu)
 
 ---
 
@@ -72,6 +74,14 @@ E --> F["Optional: App uses <br> ExternalUserId / Tags / Consent"]
 The Jointag Proximity SDK is available as a compiled **xcframework** that can be
 integrated into your project either via [CocoaPods](https://cocoapods.org) or
 manually.
+
+**Requirements**
+
+- **iOS 15.0** or later. Version 1.18.0 and earlier supported iOS 12; 1.19.0
+  raises the minimum because Xcode 27 does not build for anything lower.
+- Your application must adopt the UIKit scene-based life cycle if it is built
+  against the iOS 27 SDK — see
+  [UIScene Life Cycle](#user-content-uiscene-life-cycle).
 
 ### Installation using CocoaPods
 
@@ -128,7 +138,7 @@ the necessary keys that must be added to the application Info.plist file.
 
 ### User Tracking Permission
 
-As described [here](user-tracking-usage-description), user tracking
+As described [here][user-tracking-usage-description], user tracking
 permission requires the following key to be added to the application
 **Info.plist** file:
 
@@ -150,6 +160,25 @@ Proximity.shared.requestTrackingAuthorization()
 ```objc
 [JTProximitySDK.sharedInstance requestTrackingAuthorization];
 ```
+
+#### Tracking domains and blocked traffic
+
+The SDK declares its advertising and traces endpoints as tracking domains in `PrivacyInfo.xcprivacy`.
+When tracking is not authorized, iOS blocks connections to those domains, and the failure surfaces as
+`NSURLErrorNotConnectedToInternet` — *"The Internet connection appears to be offline"* — even though
+the network is perfectly fine. Calls to the application manager and proximity endpoints are unaffected,
+since those domains are not declared as tracking.
+
+This is expected whenever a user denies tracking: without that authorization the SDK can neither
+request advertising content nor upload traces.
+
+Note also that ATT presents its prompt only **once per installation**. If an earlier run already
+consumed that opportunity, later calls return the stored status without displaying anything; reinstall
+the app to test the flow again.
+
+> ⚠️ **Attention**: on **iOS 27.0 and 27.1**, in five EU countries, the prompt may never be presented
+> at all, and the user has no way to grant the authorization. See
+> [Known Issues](#user-content--known-issues).
 
 ---
 
@@ -173,7 +202,7 @@ Proximity.shared.requestNotificationAuthorization()
 
 ### Location Permission
 
-As described [here](location-usage-description), user location permission
+As described [here][location-usage-description], user location permission
 requires the following keys to be added to the application **Info.plist**
 file:
 
@@ -197,6 +226,59 @@ A helper method is provided to easily request location authorization:
 ```swift
 Proximity.shared.requestLocationAuthorization()
 ```
+
+#### Provisional "Always" authorization
+
+`requestLocationAuthorization()` asks for *Always*, but iOS does not grant it outright. The app first
+receives a **provisional** authorization: region monitoring starts, while the system defers the
+confirming prompt until that authorization is actually used — the first time a region crossing wakes
+the app. The authorization becomes definitive only once the user answers *Allow Always*.
+
+**The app therefore behaves differently before and after that answer, with no change in your code:**
+
+| | Provisional | Confirmed *Always* |
+|---|---|---|
+| Region monitoring | active | active |
+| App kept alive in the background | no — terminated shortly after it leaves the foreground | yes |
+| Relaunched by a region crossing | no | yes |
+
+Measured on iOS 27.2: under provisional authorization the app was terminated **31 seconds** after
+leaving the foreground; once confirmed, the same build stayed resident for over nine minutes and
+delivered its notifications from the background.
+
+This is the most common reason for "the SDK does not work in the background" during an integration: a
+freshly installed app has simply not been asked the confirming question yet. Before drawing any
+conclusion about background delivery, check `CLLocationManager.authorizationStatus` and whether that
+prompt has been answered.
+
+#### What to expect from background delivery
+
+Three platform behaviours that are easy to mistake for SDK defects. All three were measured on iOS
+27.2, with a 200 m geofence and a device moving at 5 m/s.
+
+**A region just exited is not immediately armed for re-entry.** iOS applies hysteresis to region
+monitoring. The same crossing, repeated, gave latencies two orders of magnitude apart:
+
+| Time spent outside before re-entering | Arrival to notification |
+|---|---|
+| 25 seconds | ~3 minutes |
+| 5 minutes | ~3 seconds |
+
+Nothing in the SDK differs between the two runs. This matters because walking in and out of a doorway
+several times in a row is exactly how proximity integrations get tested, and it is the pattern that
+produces the worst result. To measure delivery latency, stay away from the area for a few minutes
+between passes.
+
+**A relaunched app does not appear in the app switcher.** When a region crossing wakes an app that was
+not running, iOS launches it as a background process with no UI scene. The app runs, requests content
+and posts notifications while the user still sees it as closed. *Not in the app switcher* is not *not
+running*, and checking the switcher to decide whether the SDK is alive gives the wrong answer.
+
+**Being force-quit does not stop delivery.** An app the user swiped away is still relaunched by a
+region crossing and completes the whole chain: on iOS 27.2, relaunch within about 50 seconds of the
+crossing and a notification 1.1 seconds after arrival. The same holds after a device reboot with no
+app ever opened — monitored regions are restored, and the first state evaluation after boot wakes the
+app.
 
 ---
 
@@ -237,31 +319,51 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 ---
 
-### iOS 13 Scenes
+### UIScene Life Cycle
 
-If your application make use of iOS 13 scenes, an additional requirement is to
-update the SDK windowSceneDelegate reference with the current active
-UIWindowSceneDelegate.
+An application built against the **iOS 27 SDK must adopt the UIKit scene-based
+life cycle**. UIKit refuses to launch one that does not:
 
-To do this you must add the following code to your current UIWindowSceneDelegate
-`scene:willConnectToSession:options:` :
+```
+Application failed to launch: UIScene life cycle is required for apps built
+with this SDK.
+```
+
+If your application still starts from `UIApplicationDelegate` alone, declare a
+scene manifest in `Info.plist` and a `UIWindowSceneDelegate`. The example
+project in the public repository shows the minimum form, in Objective-C.
+
+**No SDK-specific step is required.** Since **1.19.0** the SDK resolves the
+application window through `UIApplication.connectedScenes`, so there is nothing
+to hand to it.
+
+#### windowSceneDelegate is deprecated
+
+Earlier versions asked you to declare the active `UIWindowSceneDelegate` to the
+SDK:
 
 **Swift**
 
 ```swift
-import UIKit
-import JTProximitySDK
-
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
-    var window: UIWindow?
-
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        ProximitySDK.shared.windowSceneDelegate = self
-        guard let _ = (scene as? UIWindowScene) else { return }
-    }
+func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    // Needed before 1.19.0. Deprecated, still honoured.
+    ProximitySDK.shared.windowSceneDelegate = self
 }
 ```
+
+The property is deprecated as of 1.19.0 and still honoured, so existing
+integrations keep working untouched and the line can be removed at your
+convenience. It is kept because it remains the only way to override the SDK's
+choice — relevant to an application with several window scenes, where the SDK
+otherwise presents on the foreground-active one.
+
+What it used to work around: before 1.19.0 the SDK asked the application
+delegate for its window. A scene-based application whose delegate still declares
+an unused `window` property — as the Xcode templates did for years — answers that
+question with `nil`, and the SDK had no window to present on. Tapping a
+notification brought the application to the foreground and nothing else
+happened. Resolving the window through the scenes removes the dependency on what
+the delegate declares.
 
 ---
 
@@ -784,6 +886,37 @@ ProximitySDK.shared.setManualConsent(true, for: .advancedTracking);
 > ⚠️ **Attention**: When the **manual consent method** is used in the presence
 > of a **CMP library**, the choices made using the above methods take precedence
 > over the choices made by the user in the CMP library screen.
+
+---
+
+## 🐞 Known Issues
+
+### The ATT prompt is not presented on iOS 27.0 and 27.1 in parts of the EU
+
+> ⚠️ **Attention**: on **iOS 27.0 and 27.1**, in **Germany, France, Italy, Poland and Romania**,
+> the system may never present the ATT prompt. The call returns within a few milliseconds, the
+> status stays `notDetermined`, and nothing is displayed. **Fixed in iOS 27.2**, but devices still
+> running 27.0 or 27.1 remain affected.
+>
+> On an affected version **an app cannot tell this state apart from "the user has not been asked
+> yet"**: both report `notDetermined`. Since those two versions stay in the field, do not make your
+> interface depend on the prompt being presented, and always offer an alternative path — a settings
+> screen the user can reach on their own — rather than assuming the authorization flow will
+> complete.
+
+This is not a defect in this SDK nor in the host app, and it affected App Store apps as well. The
+enforcement of the EU rules shipped in iOS 27.0, but the replacement prompt only arrived in iOS 27.2:
+in the countries where the classic ATT alert is no longer permitted the system correctly refused to
+present it and had nothing to show in its place. The deciding factor is the region of the signed-in
+Apple Account, not the location of the device. Checked on iOS 27.2 with an Italian Apple Account:
+the prompt is presented again and the authorization can be granted.
+
+**Consequence on SDK traffic.** Tracking stays unauthorized, so iOS keeps blocking the SDK's
+tracking domains and advertising and traces calls keep failing with
+`NSURLErrorNotConnectedToInternet` — see
+[Tracking domains and blocked traffic](#user-content-tracking-domains-and-blocked-traffic). The
+difference from a user who simply denied tracking is that here the user was never given the choice,
+so an app shipped to those users sees the blocked traffic until the device is updated to iOS 27.2.
 
 ---
 
