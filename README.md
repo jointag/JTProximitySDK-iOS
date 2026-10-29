@@ -23,6 +23,8 @@
 6. [👤 User Consent and GDPR](#user-content--user-consent-and-gdpr)
     1. [Using a Consent Management Platform (CMP)](#user-content-using-a-consent-management-platform-cmp)
     2. [Manual Consent Management](#user-content-manual-consent-management)
+7. [🐞 Known Issues](#user-content--known-issues)
+    1. [The ATT prompt is not presented on iOS 27.0 and 27.1 in parts of the EU](#user-content-the-att-prompt-is-not-presented-on-ios-270-and-271-in-parts-of-the-eu)
 
 ---
 
@@ -159,27 +161,7 @@ Proximity.shared.requestTrackingAuthorization()
 [JTProximitySDK.sharedInstance requestTrackingAuthorization];
 ```
 
-#### Known issue: the prompt is not presented on iOS 27.0 and 27.1 in parts of the EU
-
-> ⚠️ **Attention**: on **iOS 27.0 and 27.1**, in **Germany, France, Italy, Poland and Romania**,
-> the system may never present the ATT prompt. The call returns within a few milliseconds, the
-> status stays `notDetermined`, and nothing is displayed. **Fixed in iOS 27.2**, but devices still
-> running 27.0 or 27.1 remain affected.
->
-> On an affected version **an app cannot tell this state apart from "the user has not been asked
-> yet"**: both report `notDetermined`. Since those two versions stay in the field, do not make your
-> interface depend on the prompt being presented, and always offer an alternative path — a settings
-> screen the user can reach on their own — rather than assuming the authorization flow will
-> complete.
-
-This is not a defect in this SDK nor in the host app, and it affected App Store apps as well. The
-enforcement of the EU rules shipped in iOS 27.0, but the replacement prompt only arrived in iOS 27.2:
-in the countries where the classic ATT alert is no longer permitted the system correctly refused to
-present it and had nothing to show in its place. The deciding factor is the region of the signed-in
-Apple Account, not the location of the device. Checked on iOS 27.2 with an Italian Apple Account:
-the prompt is presented again and the authorization can be granted.
-
-##### Consequence on SDK traffic
+#### Tracking domains and blocked traffic
 
 The SDK declares its advertising and traces endpoints as tracking domains in `PrivacyInfo.xcprivacy`.
 When tracking is not authorized, iOS blocks connections to those domains, and the failure surfaces as
@@ -187,14 +169,16 @@ When tracking is not authorized, iOS blocks connections to those domains, and th
 the network is perfectly fine. Calls to the application manager and proximity endpoints are unaffected,
 since those domains are not declared as tracking.
 
-The same happens whenever a user denies tracking, which is expected behaviour: without that
-authorization the SDK can neither request advertising content nor upload traces. On iOS 27.0 and 27.1
-in the countries listed above, however, the user had no way to grant it, so an app shipped to those
-users sees the blocked traffic until the device is updated to iOS 27.2.
+This is expected whenever a user denies tracking: without that authorization the SDK can neither
+request advertising content nor upload traces.
 
 Note also that ATT presents its prompt only **once per installation**. If an earlier run already
 consumed that opportunity, later calls return the stored status without displaying anything; reinstall
 the app to test the flow again.
+
+> ⚠️ **Attention**: on **iOS 27.0 and 27.1**, in five EU countries, the prompt may never be presented
+> at all, and the user has no way to grant the authorization. See
+> [Known Issues](#user-content--known-issues).
 
 ---
 
@@ -902,6 +886,37 @@ ProximitySDK.shared.setManualConsent(true, for: .advancedTracking);
 > ⚠️ **Attention**: When the **manual consent method** is used in the presence
 > of a **CMP library**, the choices made using the above methods take precedence
 > over the choices made by the user in the CMP library screen.
+
+---
+
+## 🐞 Known Issues
+
+### The ATT prompt is not presented on iOS 27.0 and 27.1 in parts of the EU
+
+> ⚠️ **Attention**: on **iOS 27.0 and 27.1**, in **Germany, France, Italy, Poland and Romania**,
+> the system may never present the ATT prompt. The call returns within a few milliseconds, the
+> status stays `notDetermined`, and nothing is displayed. **Fixed in iOS 27.2**, but devices still
+> running 27.0 or 27.1 remain affected.
+>
+> On an affected version **an app cannot tell this state apart from "the user has not been asked
+> yet"**: both report `notDetermined`. Since those two versions stay in the field, do not make your
+> interface depend on the prompt being presented, and always offer an alternative path — a settings
+> screen the user can reach on their own — rather than assuming the authorization flow will
+> complete.
+
+This is not a defect in this SDK nor in the host app, and it affected App Store apps as well. The
+enforcement of the EU rules shipped in iOS 27.0, but the replacement prompt only arrived in iOS 27.2:
+in the countries where the classic ATT alert is no longer permitted the system correctly refused to
+present it and had nothing to show in its place. The deciding factor is the region of the signed-in
+Apple Account, not the location of the device. Checked on iOS 27.2 with an Italian Apple Account:
+the prompt is presented again and the authorization can be granted.
+
+**Consequence on SDK traffic.** Tracking stays unauthorized, so iOS keeps blocking the SDK's
+tracking domains and advertising and traces calls keep failing with
+`NSURLErrorNotConnectedToInternet` — see
+[Tracking domains and blocked traffic](#user-content-tracking-domains-and-blocked-traffic). The
+difference from a user who simply denied tracking is that here the user was never given the choice,
+so an app shipped to those users sees the blocked traffic until the device is updated to iOS 27.2.
 
 ---
 
